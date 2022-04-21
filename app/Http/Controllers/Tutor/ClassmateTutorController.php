@@ -150,7 +150,12 @@ class ClassmateTutorController extends Controller
 
     public function detail($id){
         $classmateTutor = ClassmateTutor::find($id);
+        $listStudent = DB::table('list_students')
+        ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
+        ->join('users','list_students.user_id','=','users.id')
+        ->select('users.name AS name_student','users.email')->where('list_students.classmatetutor_id','=',$id)->get();
+        // dd($listStudent);
         $classmateTutor->load('listStudent');
-        return view('tutor.list-student.list',compact('classmateTutor'));
+        return view('tutor.list-student.list',compact('classmateTutor','listStudent'));
     }
 }
