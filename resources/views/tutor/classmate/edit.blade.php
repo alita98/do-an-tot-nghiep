@@ -27,7 +27,11 @@
                             <label for="">Chuyên ngành</label>
                             <select class="form-select" aria-label="Default select example" name="major_id" value="{{$classmates->name}}">
                                 @foreach($majors as $item)
-                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option 
+                                    @if($item->id == $classmates->major_id)
+                                    selected
+                                    @endif 
+                                    value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>

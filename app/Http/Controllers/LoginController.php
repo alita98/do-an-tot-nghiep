@@ -33,7 +33,7 @@ class LoginController extends Controller
                 return redirect(route('tutor.dashboard'));
             }
             if($user->role=="ADM"){
-                return redirect(route('department.list'));
+                return redirect(route('tutor.department.list'));
             }
         }else {
             return redirect()->back()->with('msg', 'Tài khoản Email/mật khẩu không chính xác');

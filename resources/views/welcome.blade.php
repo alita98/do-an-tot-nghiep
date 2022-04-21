@@ -71,7 +71,21 @@ Author URL: http://w3layouts.com
                                         xuất</a></li>
                             </ul>
                         </div>
-                        @else
+                        @elseif(Auth::user()->role==="TT")
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    {{Auth::user()->name}}
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
+                                    <li><a class="dropdown-item" href="{{route('logout')}}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                            xuất</a></li>
+                                </ul>
+                            </div>
+                        @elseif(Auth::user()->role==="USR")
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-expanded="false">

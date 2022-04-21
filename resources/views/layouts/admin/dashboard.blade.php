@@ -54,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="">Bảng điều khiển</a></li>
+                                    <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
                                     <li><a class="dropdown-item" href="{{route('logout')}}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
                                             xuất</a></li>
@@ -67,8 +67,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     {{Auth::user()->name}}
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="">Bảng điều khiển</a></li>
+                                    <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
                                     <li><a class="dropdown-item" href="{{route('logout')}}"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
                                             xuất</a></li>

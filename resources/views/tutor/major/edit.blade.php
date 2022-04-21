@@ -27,7 +27,11 @@
                             <label for="">Phòng ban</label>
                             <select name="department_id" class="form-select" aria-label="Default select example">
                                 @foreach($departments as $item)
-                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    <option 
+                                    @if($item->id == $majors->department_id)
+                                    selected
+                                    @endif 
+                                    value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
