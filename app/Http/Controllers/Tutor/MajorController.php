@@ -7,6 +7,7 @@ use App\Models\Classmate;
 use App\Models\Department;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use App\Http\Requests\MajorRequest;
 
 class MajorController extends Controller
 {
@@ -21,7 +22,7 @@ class MajorController extends Controller
         return view('tutor.major.add',compact('departments'));
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(MajorRequest $request){
         $majors = new Major();
         $majors->fill($request->all());
         $majors->save();
@@ -34,7 +35,7 @@ class MajorController extends Controller
         return view('tutor.major.edit',compact('majors','departments'));
     }
 
-    public function saveEdit($id,Request $request){
+    public function saveEdit($id,MajorRequest $request){
         $majors = Major::find($id);
         $majors->fill($request->all());
         $majors->save();

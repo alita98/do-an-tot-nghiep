@@ -7,6 +7,7 @@ use App\Models\Classmate;
 use App\Models\ClassmateTutor;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClassmateRequest;
 
 class ClassmateController extends Controller
 {
@@ -21,7 +22,7 @@ class ClassmateController extends Controller
         return view('tutor.classmate.add',compact('majors'));
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(ClassmateRequest $request){
         $classmates = new Classmate();
         $classmates->fill($request->all());
         $classmates->save();
@@ -34,7 +35,7 @@ class ClassmateController extends Controller
         return view('tutor.classmate.edit',compact('majors','classmates'));
     }
 
-    public function saveEdit($id,Request $request){
+    public function saveEdit($id,ClassmateRequest $request){
         $classmates = Classmate::find($id);
         $classmates->fill($request->all());
         $classmates->save();

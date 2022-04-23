@@ -7,6 +7,7 @@ use App\Models\Classmate;
 use App\Models\ClassmateTutor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClassmateTutorRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -112,7 +113,7 @@ class ClassmateTutorController extends Controller
         return view('tutor.classmate-tutor.add',compact('classmate','idUser'));
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(ClassmateTutorRequest $request){
         $classmateTutor = new ClassmateTutor();
         $classmateTutor->fill($request->all());
         if($request->hasFile('image')){
@@ -125,13 +126,13 @@ class ClassmateTutorController extends Controller
         return redirect(route('tutor.classmatetutor.list'))->with('msg','Thêm mới thành công');
     }
 
-    public function editForm($id,Request $request){
+    public function editForm(){
         $classmateTutor = ClassmateTutor::find($id);
         $classmate = Classmate::all();
         return view('tutor.classmate-tutor.edit',compact('classmateTutor','classmate'));
     }
 
-    public function saveEdit($id,Request $request){
+    public function saveEdit($id,ClassmateTutorRequest $request){
         $classmateTutor = ClassmateTutor::find($id);
         $classmateTutor->fill($request->all());
         if($request->hasFile('file_upload')){

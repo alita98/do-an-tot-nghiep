@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Major;
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartmentRequest;
 
 class DepartmentController extends Controller
 {
@@ -22,7 +23,7 @@ class DepartmentController extends Controller
         return view('tutor.department.add');
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(DepartmentRequest $request){
         $departments = new Department();
         $departments->fill($request->all());
         if($request->hasFile('file_upload')){
@@ -39,7 +40,7 @@ class DepartmentController extends Controller
         return view('tutor.department.edit',compact('departments'));
     }
 
-    public function saveEdit($id,Request $request){
+    public function saveEdit($id,DepartmentRequest $request){
         $departments = Department::find($id);
         if(!$departments){
             return redirect(route('tutor.department.list'));
