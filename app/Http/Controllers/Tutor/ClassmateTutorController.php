@@ -126,7 +126,7 @@ class ClassmateTutorController extends Controller
         return redirect(route('tutor.classmatetutor.list'))->with('msg','Thêm mới thành công');
     }
 
-    public function editForm(){
+    public function editForm($id){
         $classmateTutor = ClassmateTutor::find($id);
         $classmate = Classmate::all();
         return view('tutor.classmate-tutor.edit',compact('classmateTutor','classmate'));

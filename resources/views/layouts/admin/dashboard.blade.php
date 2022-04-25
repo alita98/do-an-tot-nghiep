@@ -1,135 +1,140 @@
-
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+	<meta charset="utf-8" />
+	<link rel="icon" type="image/png" href="{{asset('assets/img/favicon.ico')}}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Fpoly Tutor</title>
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
-	<link rel="stylesheet" href="{{asset('dashboard/css/ready.css')}}">
-	<link rel="stylesheet" href="{{asset('dashboard/css/demo.css')}}">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+	<title>Tutor Fpoly</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="{{asset('assets/css/animate.min.css')}}" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{{asset('assets/css/light-bootstrap-dashboard.css?v=1.4.0')}}" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{{asset('assets/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
+
 </head>
-    <body>
-        <div id="wrapper">
-        <div class="main-header">
-			<div class="logo-header" style="padding-top: 10px;">
-				<a href="" class="logo" style="text-decoration: none;color: red;text-align: center;">
-					<h3 style="font-weight: 1000;">FPOLY TUTOR</h3>
-				</a>
-			</div>
-			<nav class="navbar navbar-header navbar-expand-lg">
-				<div class="container-fluid">
-					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
-						<div class="input-group">
-							<input type="text" placeholder="tìm kiếm..." class="form-control" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm...';}">
-                            <input class="input-group-text" type="submit" value="" class="fa fa-search">
-							<div class="input-group-append">
-								<span>
-                                <i class="fa-solid fa-magnifying-glass"></i>
-								</span>
-							</div>
-						</div>
-					</form>
-                    </div>
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                        <ul class="navbar-nav ml-lg-auto">
-                            @if(Route::has('login'))
-                            @auth
-                            @if(Auth::user()->role==="ADM")
+<body>
 
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    {{Auth::user()->name}}
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
-                                    <li><a class="dropdown-item" href="{{route('logout')}}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                            xuất</a></li>
-                                </ul>
-                            </div>
-                            @elseif(Auth::user()->role==="TT")
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    {{Auth::user()->name}}
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
-                                    <li><a class="dropdown-item" href="{{route('logout')}}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                            xuất</a></li>
-                                </ul>
-                            </div>
-                            @endif
-                            <form action="{{route('logout')}}" id="logout-form" method="GET">
-                                @csrf
-                            </form>
-                            @else
-                            <li style="padding-left: 10px" class="login-form"><a href="{{route('register')}}"
-                                    title="Register" style="text-decoration: none; color: black;">Đăng ký</a></li>
-                            <li style="padding: 10px" title="Login"class="login-form"><a href="{{route('login')}}" title="Login" style="text-decoration: none;color: black;">Đăng
-                                    nhập</a></li>
-                            @endif
-                            @endif
-                            <!-- //search button -->
-                        </ul>
-                    </div>
-				</div>
+<div class="wrapper">
+    <nav class="navbar navbar-default navbar-fixed">
+        <div class="container-fluid">
+            <div class="col-md-2"></div>
+            <div class="navbar-header">
                 
-			</nav>
-			</div>
-            <div class="main-panel">
-				<div class="content">
-					<div class="container-fluid">
-						<div class="row">
-                            <div class="col-md-12">
-                                @yield('sidebar')
-                            </div>
-
-						</div>
-						
-					</div>
-				</div>
-				<footer class="footer">
-					<div class="container-fluid">
-						<nav class="pull-left">
-						</nav>
-						<div class="copyright ml-auto">
-							
-						</div>				
-					</div>
-				</footer>
-			</div>
-            
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <ul class="navbar-nav ml-lg-auto">
+                                @if(Route::has('login'))
+                                @auth
+                                @if(Auth::user()->role==="ADM")
+    
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        {{Auth::user()->name}}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
+                                        <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
+                                        <li><a class="dropdown-item" href="{{route('logout')}}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                                xuất</a></li>
+                                    </ul>
+                                </div>
+                                @elseif(Auth::user()->role==="TT")
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        {{Auth::user()->name}}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
+                                        <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
+                                        <li><a class="dropdown-item" href="{{route('logout')}}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                                xuất</a></li>
+                                    </ul>
+                                </div>
+                                @endif
+                                <form action="{{route('logout')}}" id="logout-form" method="GET">
+                                    @csrf
+                                </form>
+                                @else
+                                <li style="padding-left: 10px" class="login-form"><a href="{{route('register')}}"
+                                        title="Register" style="text-decoration: none; color: black;">Đăng ký</a></li>
+                                <li style="padding: 10px" title="Login"class="login-form"><a href="{{route('login')}}" title="Login" style="text-decoration: none;color: black;">Đăng
+                                        nhập</a></li>
+                                @endif
+                                @endif
+                                <!-- //search button -->
+                            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </body>
-    <script src="{{asset('dashboard/js/core/jquery.3.2.1.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/core/popper.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/core/bootstrap.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/chartist/chartist.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/jquery-mapael/jquery.mapael.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/jquery-mapael/maps/world_countries.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/chart-circle/circles.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/ready.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/demo.js')}}"></script>
+    </nav>
+    @yield('sidebar')
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="{{asset('assets/js/jquery.3.2.1.min.js')}}" type="text/javascript"></script>
+	<script src="{{asset('assets/js/bootstrap.min.js')}}" type="text/javascript"></script>
+
+	<!--  Charts Plugin -->
+	<script src="{{asset('assets/js/chartist.min.js')}}"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="{{asset('assets/js/bootstrap-notify.js')}}"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="{{asset('assets/js/light-bootstrap-dashboard.js?v=1.4.0')}}"></script>
+
+	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+	<script src="{{asset('assets/js/demo.js')}}"></script>
+
+	<script type="text/javascript">
+    	$(document).ready(function(){
+
+        	demo.initChartist();
+
+        	$.notify({
+            	icon: 'pe-7s-gift',
+            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+    	});
+	</script>
+
 </html>
+
 

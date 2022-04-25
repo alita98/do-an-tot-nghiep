@@ -9,7 +9,7 @@ class ListStudent extends Model
 {
     use HasFactory;
     protected $table = 'list_students';
-    protected $fillable = ['user_id','classmatetutor_id'];
+    protected $fillable = ['user_id','classmatetutor_id','action_id'];
 
     public function userBelongTo(){
         return $this->belongsTo(User::class,'user_id');

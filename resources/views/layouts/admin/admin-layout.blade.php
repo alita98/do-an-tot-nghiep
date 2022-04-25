@@ -1,20 +1,30 @@
 @extends('layouts.admin.dashboard')
 @section('sidebar')
-<div class="sidebar">
-    <div class="scrollbar-inner sidebar-wrapper mt-2">
-        <ul class="nav" style="width: 100%; margin-top: 0px;text-align: center;">
-            <li>
-                <a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a>
+<div class="sidebar" data-color="purple" data-image="{{asset('assets/img/sidebar-5.jpg')}}">
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text">
+                Fpoly Tutor
+            </a>
+        </div>
+
+        <ul class="nav">
+            <li class="">
+                <a href="{{route('admin.dashboard')}}">
+                    <i class="pe-7s-graph"></i>
+                    <p>Dashboard</p>
+                </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
             <li>
-                <a class="dropdown-item" href="{{route('user.list.admin')}}">Người dùng</a>
+                <a href="{{route('user.list.admin')}}">
+                    <i class="pe-7s-note2"></i>
+                    <p>Người dùng</p>
+                </a>
             </li>
-            <li><hr class="dropdown-divider"></li>
         </ul>
     </div>
 </div>
-<div id="page-wrapper" class="gray-bg dashbard-1">
+<div class="main-panel">
     @yield('content')
 </div>
 @endsection
