@@ -129,5 +129,5 @@ Route::get('/login/facebook/callback',[LoginController::class,'handleFacebookCal
 
 // 403
 Route::get('/403',function(){
-    return 'bạn ko có quyền truy cập vào đây';
+    return view('404');
 })->name('403');
