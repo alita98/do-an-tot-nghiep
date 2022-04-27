@@ -159,4 +159,5 @@ class ClassmateTutorController extends Controller
         $classmateTutor->load('listStudent');
         return view('tutor.list-student.list',compact('classmateTutor','listStudent'));
     }
+   
 }
