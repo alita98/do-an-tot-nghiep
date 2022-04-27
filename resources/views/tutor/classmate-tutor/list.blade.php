@@ -17,14 +17,14 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Information</th>
-                                <th scope="col">Link</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Classmate_id</th>
-                                <th scope="col">Số sinh viên đã tham gia</th>
+                            <th scope="col">#</th>
+                                <th scope="col">Tutor</th>
+                                <th scope="col">Thông tin chi tiết</th>
+                                <th scope="col">Phòng</th>
+                                <th scope="col">Ngày</th>
+                                <th scope="col">Thời gian</th>
+                                <th scope="col">Môn học</th>
+                                <th scope="col">Số sinh viên</th>
                                 <th scope="col">Danh sách sinh viên</th>
                                 <th scope="col">
                                     <a href="{{route('tutor.classmatetutor.add')}}" class="btn btn-primary">Thêm mới</a>
@@ -81,14 +81,13 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Information</th>
-                                <th scope="col">Link</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Classmate_id</th>
-                                <th scope="col">Số sinh viên đã tham gia</th>
+                                <th scope="col">Tutor</th>
+                                <th scope="col">Thông tin chi tiết</th>
+                                <th scope="col">Phòng</th>
+                                <th scope="col">Ngày</th>
+                                <th scope="col">Thời gian</th>
+                                <th scope="col">Môn học</th>
+                                <th scope="col">Số sinh viên</th>
                                 <th scope="col">Danh sách sinh viên</th>
                                 <th scope="col">
                                     
@@ -100,7 +99,6 @@
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$item->name}}</td>
-                                    <td><img src="{{asset('storage/'. $item->image)}}" alt="" width="200"></td>
                                     <td>{{$item->information}}</td>
                                     <td><a href="{{$item->link}}">Link phòng học</a></td>
                                     <td>{{$item->date}}</td>

@@ -11,6 +11,8 @@ use App\Http\Requests\ClassmateTutorRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
+
 class ClassmateTutorController extends Controller
 {
     public function list(Request $request){
@@ -110,7 +112,8 @@ class ClassmateTutorController extends Controller
     public function addForm(){
         $idUser = Auth::user()->id;
         $classmate = Classmate::all();
-        return view('tutor.classmate-tutor.add',compact('classmate','idUser'));
+        $date = Carbon::tomorrow('Asia/Ho_Chi_Minh')->toDateString();
+        return view('tutor.classmate-tutor.add',compact('classmate','idUser','date'));
     }
 
     public function saveAdd(ClassmateTutorRequest $request){

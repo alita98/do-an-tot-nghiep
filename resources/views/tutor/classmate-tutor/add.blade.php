@@ -8,10 +8,7 @@
         <div class="col-md-12 mid-content-top">
             <div class="middle-content">
                 <div class="col-md-6">
-                    <h2>Thêm mới lớp học</h2>
-                </div>
-                <div class="col-md-12">
-                    <a href="{{route('tutor.classmatetutor.list')}}" class="btn btn-success">Xem tất cả</a>
+                    <h2>Thêm mới tutor</h2>
                 </div>
                 <div class="col-md-12">
                     @if(Session::has('msg'))
@@ -20,49 +17,43 @@
                     <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <label for="">Name</label>
+                            <label for="">Tên tutor</label>
                             <input class="form-control" type="text" name="name">
                         </div>
                         @error('name')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-                        <!-- <div>
-                            <label for="">Image</label>
-                            <input class="form-control" type="file" name="image">
-                        </div>
-                        @error('image')
-                            <span class="text-danger">{{$message}}</span>
-                        @enderror -->
                         <div>
-                            <label for="">Inforation</label>
-                            <input class="form-control" type="text" name="information">
+                            <label for="">Thông tin chi tiết</label>
+                            <textarea name="information" id="" class="form-control" placeholder="Nội dung buổi tutor"></textarea>
+                            <!-- <input class="form-control" type="text" name="information"> -->
                         </div>
                         @error('information')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                         <div>
-                            <label for="">Link</label>
+                            <label for="">Link trực tuyến / Phòng học</label>
                             <input class="form-control" type="text" name="link">
                         </div>
                         @error('link')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                         <div>
-                            <label for="">Date</label>
-                            <input class="form-control" type="date" name="date">
+                            <label for="">Ngày diễn ra</label>
+                            <input class="form-control" type="date" name="date" min="{{$date}}">
                         </div>
                         @error('date')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                         <div>
-                            <label for="">Start Time</label>
+                            <label for="">Thời gian bắt đầu</label>
                             <input class="form-control" type="time" name="start_time">
                         </div>
                         @error('start_time')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                         <div>
-                            <label for="">End Time</label>
+                            <label for="">Thời gian dự kiến kết thúc</label>
                             <input class="form-control" type="time" name="end_time">
                         </div>
                         @error('end_time')
@@ -73,7 +64,7 @@
                         </div>
                         <div>
                             <label for="">Môn học</label>
-                            <select class="form-select" aria-label="Default select example" name="classmate_id">
+                            <select class="form-select form-control" aria-label="Default select example" name="classmate_id">
                             @foreach($classmate as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
