@@ -28,7 +28,8 @@
                                 <h4><a href="#courses" style="text-decoration: none;">Tên lớp học: {{$item->name_classmate_tutor}}</a></h4>
                                 <p>Giảng viên: {{$item->name_tutor}}</p>
                                 <p>Thông tin thêm: {{$item->information_classmatetutor}}</p>
-                                <a class="btn btn-style btn-style-primary" href="">Xem chi tiết<i class="fa fa-arrow-right ml-2" aria-hidden="true"></i></a>
+                                <a class="btn btn-style btn-style-primary" href="{{route('classmate.me.detail',['id'=>$item->id_classmate])}}">Xem chi tiết<i class="fa fa-arrow-right ml-2" aria-hidden="true"></i></a>
+                                
                             </div>
                         </div>
                     </div>
@@ -38,4 +39,5 @@
         </div>
         <!-- //courses section -->
     </div>
+
     @endsection

@@ -101,8 +101,10 @@ Route::prefix('student/')->middleware('auth')->group(function(){
     //Classmate Tutor đã tham gia
     Route::get('classmate-tutor-for-me',[HomeController::class,'classmateForMe'])->name('classmate.me');
 
+    //Vote
+    Route::post('vote',[HomeController::class,'saveVote'])->name('vote');
     //Xem chi tiết lớp học đã tham gia
-    // Route::get('classmate-tutor-for-me-detail/{id}',[HomeController::class,'classmateForMeDetail'])->name('classmate.me.detail');
+    Route::get('classmate-tutor-for-me-detail/{id}',[HomeController::class,'classmateForMeDetail'])->name('classmate.me.detail');
     
     //Detail Classmate Tutor
     Route::get('detail-classmate-tutor/{id}',[HomeController::class,'detail'])->name('detail.classmatetutor');

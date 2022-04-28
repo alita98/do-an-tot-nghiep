@@ -50,9 +50,9 @@
                         </div>
                         <div class="row g-3 align-items-center" style="padding-bottom: 10px;">
                             <div class="col-9">
-                            @if(Session::has('msg'))
-                            <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
-                        @endif
+                                @if(Session::has('msg'))
+                                <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
+                                @endif
                                 <form action="" method="POST">
                                     @csrf
                                     <div>
@@ -61,7 +61,7 @@
                                     <div>
                                         <input type="hidden" name="classmatetutor_id"  value="{{($classmateTutor->id)}}">
                                     </div>
-                                   @if($checkIds=='true')
+                                @if($checkIds=='true')
                                     <div>
                                         <button class="btn btn-info" disabled>Bạn đã tham gia lớp học</button>
                                     </div>
