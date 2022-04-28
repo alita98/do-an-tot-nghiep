@@ -5,10 +5,7 @@
         <div class="col-md-12 mid-content-top">
             <div class="middle-content">
                 <div class="col-md-12">
-                    <h2>Thêm thông tin Môn học</h2>
-                </div>
-                <div class="col-md-12">
-                    <a href="{{route('tutor.classmate.list')}}" class="btn btn-success">Xem tất cả</a>
+                    <h2>Sửa thông tin Môn học</h2>
                 </div>
                 <div class="col-md-12">
                     @if(Session::has('msg'))
@@ -17,7 +14,7 @@
                     <form action="" method="POST">
                         @csrf
                         <div>
-                            <label for="">Name</label>
+                            <label for="">Môn học</label>
                             <input class="form-control" type="text" name="name" value="{{$classmates->name}}">
                         </div>
                         @error('name')
@@ -25,7 +22,7 @@
                         @enderror
                         <div>
                             <label for="">Chuyên ngành</label>
-                            <select class="form-select" aria-label="Default select example" name="major_id" value="{{$classmates->name}}">
+                            <select class="form-select form-control" aria-label="Default select example" name="major_id" value="{{$classmates->name}}">
                                 @foreach($majors as $item)
                                     <option 
                                     @if($item->id == $classmates->major_id)
@@ -44,7 +41,8 @@
                         @enderror
                         <div>
                             <label for="">Thông tin thêm</label>
-                            <input class="form-control" type="text" name="information" value="{{$classmates->information}}">
+                            <textarea name="information"  class="form-control" >{{$classmates->information}}</textarea>
+                            <!-- <input class="form-control" type="text" name="information" value="{{$classmates->information}}"> -->
                         </div>
                         @error('name')
                             <span class="text-danger">{{$message}}</span>

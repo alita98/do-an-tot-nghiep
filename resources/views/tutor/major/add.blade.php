@@ -7,9 +7,6 @@
                 <div class="col-md-6">
                     <h2>Thêm thông tin Chuyên ngành</h2>
                 </div>
-                <div class="col-md-12">
-                    <a href="{{route('tutor.major.list')}}" class="btn btn-success">Xem tất cả</a>
-                </div>
                 <br>
                 <div class="col-md-12">
                     @if(Session::has('msg'))
@@ -18,7 +15,7 @@
                     <form action="" method="POST">
                         @csrf
                         <div>
-                            <label for="">Name</label>
+                            <label for="">Chuyên ngành</label>
                             <input class="form-control" type="text" name="name">
                         </div>
                         @error('name')
@@ -26,7 +23,7 @@
                         @enderror
                         <div>
                             <label for="">Phòng ban</label>
-                            <select name="department_id" class="form-select" aria-label="Default select example">
+                            <select name="department_id" class="form-select form-control" aria-label="Default select example">
                                 @foreach($departments as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach

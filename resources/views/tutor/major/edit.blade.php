@@ -8,9 +8,6 @@
                     <h2>Sửa thông tin Chuyên ngành</h2>
                 </div>
                 <div class="col-md-12">
-                    <a href="{{route('tutor.major.list')}}" class="btn btn-success">Xem tất cả</a>
-                </div>
-                <div class="col-md-12">
                     @if(Session::has('msg'))
                             <div class="alert alert-success" role="alert">{{Session::get('msg')}}</div>
                         @endif
@@ -25,7 +22,7 @@
                         @enderror
                         <div>
                             <label for="">Phòng ban</label>
-                            <select name="department_id" class="form-select" aria-label="Default select example">
+                            <select name="department_id" class="form-select form-control" aria-label="Default select example">
                                 @foreach($departments as $item)
                                     <option 
                                     @if($item->id == $majors->department_id)

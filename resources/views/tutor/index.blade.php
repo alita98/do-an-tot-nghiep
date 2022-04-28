@@ -45,7 +45,29 @@
 
                 </div>
                 <div class="collapse navbar-collapse">
+
                     <ul class="nav navbar-nav navbar-right">
+                       
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <p>
+                                    {{Auth::user()->name}}
+                                    <b class="caret"></b>
+                                </p>
+
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá
+                                        nhân</a></li>
+                                <li><a class="dropdown-item" href="{{route('logout')}}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                        xuất</a></li>
+                            </ul>
+                        </li>
+                        <li class="separator hidden-lg"></li>
+                    </ul>
+
+                    <!-- <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <ul class="navbar-nav ml-lg-auto">
                                 @if(Route::has('login'))
@@ -67,6 +89,7 @@
                                                 xuất</a></li>
                                     </ul>
                                 </div>
+
                                 @elseif(Auth::user()->role==="TT")
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary dropdown-toggle"
@@ -95,10 +118,9 @@
                                         nhập</a></li>
                                 @endif
                                 @endif
-                                <!-- //search button -->
                             </ul>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </nav>
@@ -147,43 +169,43 @@
         <div class="main-panel">
             <div class="content">
                 <div class="container-fluid">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title text-center">Thống kê lượng sinh viên tham gia lớp của bạn</h4>
-                                <p class="category text-center">Tính trên đầu người</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title text-center">Thống kê lượng sinh viên tham gia lớp của bạn</h4>
+                            <p class="category text-center">Tính trên đầu người</p>
+                        </div>
+                        <div class="content">
+                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
-                                <div class="footer">
-                                    <div class="legend d-flex justify-content-center">
-                                        <i class="fa fa-circle text-info"></i> Tham gia
-                                        <i class="fa fa-circle text-danger"></i> Không tham gia
-                                    </div>
+                            <div class="footer">
+                                <div class="legend d-flex justify-content-center">
+                                    <i class="fa fa-circle text-info"></i> Tham gia
+                                    <i class="fa fa-circle text-danger"></i> Không tham gia
                                 </div>
                             </div>
                         </div>
-                        <div class="card ">
-                            <div class="header">
-                                <h4 class="title">thống kê tutor theo từng tháng</h4>
-                                <p class="category">All products including Taxes</p>
-                            </div>
-                            <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
+                    </div>
+                    <div class="card ">
+                        <div class="header">
+                            <h4 class="title">thống kê tutor theo từng tháng</h4>
+                            <p class="category">All products including Taxes</p>
+                        </div>
+                        <div class="content">
+                            <div id="chartActivity" class="ct-chart"></div>
 
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Tốt
-                                        <i class="fa fa-circle text-warning"></i> Bình thường
-                                        <i class="fa fa-circle text-danger"></i> Tệ
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-check"></i> Data information certified
-                                    </div>
+                            <div class="footer">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Tốt
+                                    <i class="fa fa-circle text-warning"></i> Bình thường
+                                    <i class="fa fa-circle text-danger"></i> Tệ
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-check"></i> Data information certified
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
