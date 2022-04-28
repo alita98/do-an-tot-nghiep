@@ -100,7 +100,11 @@
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->information}}</td>
+                                    @if(Str::startsWith($item->link,'https://meet.google.com') == 'true')
                                     <td><a href="{{$item->link}}">Link phòng học</a></td>
+                                    @else
+                                    <td>{{$item->link}}</td>
+                                    @endif 
                                     <td>{{$item->date}}</td>
                                     <td>{{$item->start_time}} - {{$item->end_time}}</td>
                                     <td>{{$item->classmateBelongTo->name}}</td>

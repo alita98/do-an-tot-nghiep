@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ClassmateTutorRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 
 
 class ClassmateTutorController extends Controller
@@ -27,7 +27,13 @@ class ClassmateTutorController extends Controller
         ->where('classmate_tutors.date','=', Carbon::now()->toDateString())
         ->orderBy('date')
         ->where('users.id',$idUser)->get();
-        // dd($classmateTutorToday);
+        // $room = ClassmateTutor::join('users','users.id','=','classmate_tutors.user_id')
+        // ->select('classmate_tutors.link')
+        // ->where('classmate_tutors.date','=', Carbon::now()->toDateString())
+        // ->orderBy('date')
+        // ->where('users.id',$idUser)->get();
+        // $checkRoom = Str::startsWith($room,'https://meet.google.com');
+        // dd($checkRoom);
         $classmateTutorToday->load('classmateBelongTo','listStudent');
 
         //Lịch học 7 ngày tiếp theo (mặc định)
