@@ -55,9 +55,9 @@ class ClassmateTutorRequest extends FormRequest
         $message = [
             'name.required' => 'Hãy nhập tên lớp học',
             'name.unique' => 'Tên đã tồn tại',
-            'file_upload.required' => 'Hãy chọn ảnh cho phòng ban',
+            'file_upload.required' => 'Hãy chọn ảnh cho lớp học',
             'file_upload.mimes' => 'Ảnh không đúng định dạng',
-            'information.required' => 'Hãy nhập thông tin phòng ban',
+            'information.required' => 'Hãy nhập thông tin lớp học',
             'link.required' => 'Hãy nhập link phòng học',
             'date.required' => 'Hãy chọn ngày học',
             'start_time.required' => 'Hãy chọn thời gian bắt đầu',

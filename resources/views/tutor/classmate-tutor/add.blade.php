@@ -8,7 +8,7 @@
         <div class="col-md-12 mid-content-top">
             <div class="middle-content">
                 <div class="col-md-6">
-                    <h2>Thêm mới tutor</h2>
+                    <h2>Tạo lớp học</h2>
                 </div>
                 <div class="col-md-12">
                     @if(Session::has('msg'))
@@ -17,7 +17,7 @@
                     <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div>
-                            <label for="">Tên tutor</label>
+                            <label for="">Tên lớp học</label>
                             <input class="form-control" type="text" name="name">
                         </div>
                         @error('name')

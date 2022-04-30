@@ -10,7 +10,7 @@
         <div class="col-md-12 mid-content-top">
             <div class="middle-content">
                 <div class="col-md-6">
-                    <h2>Danh sách Sinh viên tutor</h2>
+                    <h2>Danh sách sinh viên đăng kí tham gia</h2>
                 </div>
                 <div>
                     <table class="table">
@@ -20,7 +20,7 @@
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">
-                                    
+                                    <a href="" class="btn btn-info">Xuất file excel</a>
                                 </th>
                             </tr>
                         </thead>
@@ -31,7 +31,7 @@
                             @foreach($listStudent as $item)
                                 <tr>
                                     <td scope="row">{{$stt++}}</td>
-                                    <td scope="row">{{$item->name}}</td>
+                                    <td scope="row">{{$item->name_student}}</td>
                                     <td scope="row">{{$item->email}}</td>
                                 </tr>
                             @endforeach

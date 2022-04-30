@@ -11,6 +11,7 @@ use App\Http\Controllers\Tutor\ClassmateTutorController;
 use App\Http\Controllers\Tutor\DashboardController as TutorDashboardController;
 use App\Http\Controllers\Tutor\DepartmentController;
 use App\Http\Controllers\Tutor\MajorController;
+use App\Http\Controllers\Tutor\ListStudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +72,6 @@ Route::prefix('tutor/')->middleware('authtutor')->group(function(){
         Route::post('/edit/{id}',[ClassmateTutorController::class,'saveEdit']);
         Route::get('/remove/{id}',[ClassmateTutorController::class,'delete'])->name('tutor.classmatetutor.delete');
         Route::get('/detai-list-student/{id}',[ClassmateTutorController::class,'detail'])->name('tutor.classmatetutor.detail');
-
     });
 
     //Department
