@@ -20,8 +20,12 @@
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">
-                                    <a href="" class="btn btn-info">Xuất file excel</a>
+                                        @csrf
+                                        <button type="submit">
+                                            <a href="{{route('export-tasks')}}" id="export" onclick="exportTasks(event.target);">Xuất file excel</a>
+                                        </button>
                                 </th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -52,6 +56,12 @@
                     });
                 });
             </script>
+            <script>
+                function exportTasks(_this) {
+                   let _url = $(_this).data('href');
+                   window.location.href = _url;
+                }
+             </script>
         </div>
         <div class="clearfix"> </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tutor;
 use App\Http\Controllers\Controller;
 use App\Models\Classmate;
 use App\Models\ClassmateTutor;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClassmateTutorRequest;
@@ -168,5 +169,39 @@ class ClassmateTutorController extends Controller
         $classmateTutor->load('listStudent');
         return view('tutor.list-student.list',compact('classmateTutor','listStudent'));
     }
-   
+    
+    public function exportCsv(Request $request){
+        $fileName = 'tasks.csv';
+        $tasks = User::all();
+     
+             $headers = array(
+                 "Content-type"        => "text/csv",
+                 "Content-Disposition" => "attachment; filename=$fileName",
+                 "Pragma"              => "no-cache",
+                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                 "Expires"             => "0"
+             );
+     
+             $columns = array('id', 'name', 'email','created_at','updated_at');
+     
+             $callback = function() use($tasks, $columns) {
+                 $file = fopen('php://output', 'w');
+                 fputcsv($file, $columns);
+     
+                 foreach ($tasks as $task) {
+                     $row['id']  = $task->id;
+                     $row['name']    = $task->name;
+                     $row['email']    = $task->email;
+                     $row['Start Date']  = $task->created_at;
+                     $row['Due Date']  = $task->updated_at;
+     
+                     fputcsv($file, array($row['id'], $row['name'], $row['email'], $row['Start Date'], $row['Due Date']));
+                 }
+     
+                 fclose($file);
+             };
+     
+             return response()->stream($callback, 200, $headers);
+             return view('tutor.list-student.list', compact('tasks','fileName'));
+         }
 }
