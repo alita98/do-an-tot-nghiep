@@ -14,15 +14,15 @@
                 </div>
                 <div>
                     <table class="table">
+                        @csrf
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">
-                                        @csrf
                                         <button type="submit">
-                                            <a href="{{route('export-tasks')}}" id="export" onclick="exportTasks(event.target);">Xuất file excel</a>
+                                            <a href="{{route('export-tasks',['id'=>$classmateTutor->id])}}" id="export" onclick="exportTasks(event.target);">Xuất file excel</a>
                                         </button>
                                 </th>
                                 
@@ -56,12 +56,12 @@
                     });
                 });
             </script>
-            <script>
+            {{-- <script>
                 function exportTasks(_this) {
                    let _url = $(_this).data('href');
                    window.location.href = _url;
                 }
-             </script>
+             </script> --}}
         </div>
         <div class="clearfix"> </div>
     </div>

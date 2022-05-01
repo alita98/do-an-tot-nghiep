@@ -170,38 +170,43 @@ class ClassmateTutorController extends Controller
         return view('tutor.list-student.list',compact('classmateTutor','listStudent'));
     }
     
-    public function exportCsv(Request $request){
+    public function exportCsv($id, Request $request){
         $fileName = 'tasks.csv';
-        $tasks = User::all();
+        $classmateTutor = ClassmateTutor::find($id);
+        $tasks = DB::table('list_students')
+        ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
+        ->join('users','list_students.user_id','=','users.id')
+        ->select('users.name AS name_student','users.email')->where('list_students.classmatetutor_id','=',$id)->get();
+        // dd($tasks);
      
-             $headers = array(
-                 "Content-type"        => "text/csv",
-                 "Content-Disposition" => "attachment; filename=$fileName",
-                 "Pragma"              => "no-cache",
-                 "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-                 "Expires"             => "0"
-             );
-     
-             $columns = array('id', 'name', 'email','created_at','updated_at');
-     
-             $callback = function() use($tasks, $columns) {
-                 $file = fopen('php://output', 'w');
-                 fputcsv($file, $columns);
-     
-                 foreach ($tasks as $task) {
-                     $row['id']  = $task->id;
-                     $row['name']    = $task->name;
-                     $row['email']    = $task->email;
-                     $row['Start Date']  = $task->created_at;
-                     $row['Due Date']  = $task->updated_at;
-     
-                     fputcsv($file, array($row['id'], $row['name'], $row['email'], $row['Start Date'], $row['Due Date']));
-                 }
-     
-                 fclose($file);
-             };
-     
-             return response()->stream($callback, 200, $headers);
-             return view('tutor.list-student.list', compact('tasks','fileName'));
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('id', 'name', 'email','created_at','updated_at');
+
+        $callback = function() use($tasks, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($tasks as $task) {
+                $row['id']  = $task->id;
+                $row['name']    = $task->name;
+                $row['email']    = $task->email;
+                $row['Start Date']  = $task->created_at;
+                $row['Due Date']  = $task->updated_at;
+
+                fputcsv($file, array($row['id'], $row['name'], $row['email'], $row['Start Date'], $row['Due Date']));
+            }
+
+            fclose($file);
+            };
+    
+            return response()->stream($callback, 200, $headers);
+            return view('tutor.list-student.list', compact('tasks','fileName'));
          }
 }

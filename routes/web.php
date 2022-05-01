@@ -72,7 +72,7 @@ Route::prefix('tutor/')->middleware('authtutor')->group(function(){
         Route::post('/edit/{id}',[ClassmateTutorController::class,'saveEdit']);
         Route::get('/remove/{id}',[ClassmateTutorController::class,'delete'])->name('tutor.classmatetutor.delete');
         Route::get('/detai-list-student/{id}',[ClassmateTutorController::class,'detail'])->name('tutor.classmatetutor.detail');
-        Route::get('/export-tasks',[ClassmateTutorController::class,'exportCsv'])->name('export-tasks');
+        Route::get('/export-tasks/{id}',[ClassmateTutorController::class,'exportCsv'])->name('export-tasks');
     });
 
     //Department
