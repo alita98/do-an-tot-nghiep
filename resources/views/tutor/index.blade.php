@@ -47,7 +47,7 @@
                 <div class="collapse navbar-collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                       
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <p>
@@ -62,65 +62,13 @@
                                 <li><a class="dropdown-item" href="{{route('logout')}}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
                                         xuất</a></li>
+                                <form action="{{route('logout')}}" id="logout-form" method="GET">
+                                    @csrf
+                                </form>
                             </ul>
                         </li>
                         <li class="separator hidden-lg"></li>
                     </ul>
-
-                    <!-- <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <ul class="navbar-nav ml-lg-auto">
-                                @if(Route::has('login'))
-                                @auth
-                                @if(Auth::user()->role==="ADM")
-
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{Auth::user()->name}}
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá
-                                                nhân</a></li>
-                                        <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều
-                                                khiển</a></li>
-                                        <li><a class="dropdown-item" href="{{route('logout')}}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                                xuất</a></li>
-                                    </ul>
-                                </div>
-
-                                @elseif(Auth::user()->role==="TT")
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{Auth::user()->name}}
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá
-                                                nhân</a></li>
-                                        <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều
-                                                khiển</a></li>
-                                        <li><a class="dropdown-item" href="{{route('logout')}}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                                xuất</a></li>
-                                    </ul>
-                                </div>
-                                @endif
-                                <form action="{{route('logout')}}" id="logout-form" method="GET">
-                                    @csrf
-                                </form>
-                                @else
-                                <li style="padding-left: 10px" class="login-form"><a href="{{route('register')}}"
-                                        title="Register" style="text-decoration: none; color: black;">Đăng ký</a></li>
-                                <li style="padding: 10px" title="Login" class="login-form"><a href="{{route('login')}}"
-                                        title="Login" style="text-decoration: none;color: black;">Đăng
-                                        nhập</a></li>
-                                @endif
-                                @endif
-                            </ul>
-                        </li>
-                    </ul> -->
                 </div>
             </div>
         </nav>
