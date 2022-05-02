@@ -171,12 +171,13 @@ class ClassmateTutorController extends Controller
     }
     
     public function exportCsv($id, Request $request){
-        $fileName = 'tasks.csv';
         $classmateTutor = ClassmateTutor::find($id);
+        $fileName = 'tasks.csv';
         $tasks = DB::table('list_students')
         ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
         ->join('users','list_students.user_id','=','users.id')
-        ->select('users.name AS name_student','users.email')->where('list_students.classmatetutor_id','=',$id)->get();
+        ->select('users.name AS name_student','users.email','users.id AS id_student')
+        ->where('list_students.classmatetutor_id','=',$id)->get();
         // dd($tasks);
      
         $headers = array(
@@ -184,23 +185,22 @@ class ClassmateTutorController extends Controller
             "Content-Disposition" => "attachment; filename=$fileName",
             "Pragma"              => "no-cache",
             "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-            "Expires"             => "0"
+            "Expires"             => "0",
+            "Fonts" => "Times New Roman"
         );
 
-        $columns = array('id', 'name', 'email','created_at','updated_at');
+        $columns = array('id_student','name_student', 'email');
 
         $callback = function() use($tasks, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($tasks as $task) {
-                $row['id']  = $task->id;
-                $row['name']    = $task->name;
+                $row['id']    = $task->id_student;
+                $row['name_student']    = $task->name_student;
                 $row['email']    = $task->email;
-                $row['Start Date']  = $task->created_at;
-                $row['Due Date']  = $task->updated_at;
 
-                fputcsv($file, array($row['id'], $row['name'], $row['email'], $row['Start Date'], $row['Due Date']));
+                fputcsv($file, array($row['id'], $row['name_student'], $row['email']));
             }
 
             fclose($file);

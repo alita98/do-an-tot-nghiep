@@ -56,12 +56,12 @@
                     });
                 });
             </script>
-            {{-- <script>
+            <script>
                 function exportTasks(_this) {
                    let _url = $(_this).data('href');
                    window.location.href = _url;
                 }
-             </script> --}}
+             </script>
         </div>
         <div class="clearfix"> </div>
     </div>
