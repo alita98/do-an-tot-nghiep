@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 20, 2022 lúc 01:50 PM
+-- Thời gian đã tạo: Th5 03, 2022 lúc 05:44 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -61,7 +61,6 @@ CREATE TABLE `classmate_tutors` (
   `end_time` varchar(255) DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `classmate_id` bigint(20) UNSIGNED NOT NULL,
-  `votes` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -70,9 +69,10 @@ CREATE TABLE `classmate_tutors` (
 -- Đang đổ dữ liệu cho bảng `classmate_tutors`
 --
 
-INSERT INTO `classmate_tutors` (`id`, `name`, `information`, `link`, `date`, `start_time`, `end_time`, `user_id`, `classmate_id`, `votes`, `created_at`, `updated_at`) VALUES
-(9, 'Nguyễn Thế Anh', 'không học thì đi', 'chưa có', '2022-04-21', '18:34', '18:33', 8, 1, NULL, '2022-04-20 11:29:54', '2022-04-20 11:31:17'),
-(11, 'Nguyễn Thế Anh', 'không học thì đi', 'https://meet.google.com/ccu-kygs-yaf', '2022-04-20', '22:31', '23:36', 8, 1, NULL, '2022-04-20 11:31:49', '2022-04-20 11:31:49');
+INSERT INTO `classmate_tutors` (`id`, `name`, `information`, `link`, `date`, `start_time`, `end_time`, `user_id`, `classmate_id`, `created_at`, `updated_at`) VALUES
+(9, 'Nguyễn Thế Anh', 'không học thì đi', 'chưa có', '2022-04-25', '18:34', '18:33', 8, 1, '2022-04-20 11:29:54', '2022-04-23 12:38:37'),
+(11, 'Nguyễn Thế Anh', 'không học thì đi', 'https://meet.google.com/ccu-kygs-yaf', '2022-04-25', '22:31', '23:36', 8, 1, '2022-04-20 11:31:49', '2022-04-23 12:38:18'),
+(12, 'PHP2', 'dfsdfs', 'https://meet.google.com/ccu-kygs-yaf', '2022-04-30', '07:00', '08:00', 8, 1, '2022-04-28 09:14:35', '2022-04-28 09:14:35');
 
 -- --------------------------------------------------------
 
@@ -135,8 +135,14 @@ CREATE TABLE `list_students` (
 --
 
 INSERT INTO `list_students` (`id`, `user_id`, `classmatetutor_id`, `action_id`, `created_at`, `updated_at`) VALUES
-(5, 9, 9, NULL, '2022-04-20 11:32:13', '2022-04-20 11:32:13'),
-(6, 9, 11, NULL, '2022-04-20 11:43:57', '2022-04-20 11:43:57');
+(5, 9, 9, 1, '2022-04-20 11:32:13', '2022-04-20 11:32:13'),
+(6, 9, 11, NULL, '2022-04-20 11:43:57', '2022-04-20 11:43:57'),
+(7, 10, 9, 1, '2022-04-23 12:38:58', '2022-04-23 12:38:58'),
+(8, 10, 11, 1, '2022-04-23 12:39:05', '2022-04-23 12:39:05'),
+(9, 11, 9, NULL, '2022-04-23 12:39:33', '2022-04-23 12:39:33'),
+(10, 12, 9, 2, '2022-04-23 12:39:53', '2022-04-23 12:39:53'),
+(11, 8, 12, NULL, '2022-04-28 09:15:05', '2022-04-28 09:15:05'),
+(12, 10, 12, NULL, '2022-04-28 09:15:45', '2022-04-28 09:15:45');
 
 -- --------------------------------------------------------
 
@@ -181,6 +187,21 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `notes`
+--
+
+CREATE TABLE `notes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `information` text DEFAULT NULL,
+  `classmatetutor_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -244,9 +265,34 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `confirm_password`, `provider`, `provider_id`, `avatar`, `gender`, `address`, `phone`, `birth_date`, `last_login`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(7, 'Nguyen The Anh (FPL HN)', 'anhntph11659@fpt.edu.vn', NULL, NULL, NULL, 'google', '118075497884680436099', 'https://lh3.googleusercontent.com/a-/AOh14GgftLMdEwC653WxWgeX37bcJ80yzAoKFV_MWnCR=s96-c', NULL, NULL, NULL, NULL, '2022-04-20 11:05:31', 'ADM', NULL, '2022-04-20 11:04:16', '2022-04-20 11:05:31'),
-(8, 'Nguyễn Thế Anh', 'tutor1@gmail.com', NULL, '$2y$10$w1WiZmU7zlRyZ75KmEtwYe4Wk2tCQhB6SAex7XcdrmFvOYi0l5q0W', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-20 11:18:31', 'TT', NULL, '2022-04-20 11:14:52', '2022-04-20 11:18:31'),
-(9, 'Nguyễn Thế Anh', 'user1@gmail.com', NULL, '$2y$10$VpwqXhG0ke8PpE8BkDBZ1.WdLNAvFTWFcvs/uaYyntSpDmQnZiTvm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-20 11:32:03', 'USR', NULL, '2022-04-20 11:15:10', '2022-04-20 11:32:03');
+(7, 'Nguyen The Anh (FPL HN)', 'anhntph11659@fpt.edu.vn', NULL, NULL, NULL, 'google', '118075497884680436099', 'https://lh3.googleusercontent.com/a-/AOh14GgftLMdEwC653WxWgeX37bcJ80yzAoKFV_MWnCR=s96-c', NULL, NULL, NULL, NULL, '2022-04-25 16:03:07', 'ADM', NULL, '2022-04-20 11:04:16', '2022-04-25 16:03:07'),
+(8, 'asjhkasdja', 'tutor1@gmail.com', NULL, '$2y$10$w1WiZmU7zlRyZ75KmEtwYe4Wk2tCQhB6SAex7XcdrmFvOYi0l5q0W', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-28 13:19:55', 'TT', NULL, '2022-04-20 11:14:52', '2022-04-28 13:19:55'),
+(9, 'Nguyễn Thế Anh', 'user1@gmail.com', NULL, '$2y$10$VpwqXhG0ke8PpE8BkDBZ1.WdLNAvFTWFcvs/uaYyntSpDmQnZiTvm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-20 11:32:03', 'USR', NULL, '2022-04-20 11:15:10', '2022-04-20 11:32:03'),
+(10, 'Nguyễn Thế Anh', 'user1@fpt.edu.vn', NULL, '$2y$10$fh8ji76N5oGj0DKfjoEAj.2kjUsvBECIoefu7mXnR5uN8ArZjSjP2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-05-02 09:09:40', 'USR', NULL, '2022-04-23 12:36:14', '2022-05-02 09:09:40'),
+(11, 'Nguyễn Thế', 'user2@fpt.edu.vn', NULL, '$2y$10$L9w/gVzvxhjXvS7Ig6/EueXGKBANT.XAR1Z9Hg0twdyOMumybIeEy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-23 12:39:25', 'USR', NULL, '2022-04-23 12:36:45', '2022-04-23 12:39:25'),
+(12, 'Nguyễn Văn A', 'user3@fpt.edu.vn', NULL, '$2y$10$1mPVy1cmYGlaehTyUCGLc.u331eMkRAr3gt1lFNcUAR.Rq0rGP1Ty', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-23 12:39:48', 'USR', NULL, '2022-04-23 12:37:23', '2022-04-23 12:39:48');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `votes`
+--
+
+CREATE TABLE `votes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `vote` bigint(20) UNSIGNED DEFAULT NULL,
+  `classmatetutor_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `votes`
+--
+
+INSERT INTO `votes` (`id`, `vote`, `classmatetutor_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 12, '2022-04-28 10:21:42', '2022-04-28 10:21:42'),
+(4, 2, 9, '2022-05-02 09:10:25', '2022-05-02 09:10:25');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -302,6 +348,13 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `notes`
+--
+ALTER TABLE `notes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_note_classmatetutor` (`classmatetutor_id`);
+
+--
 -- Chỉ mục cho bảng `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -323,6 +376,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Chỉ mục cho bảng `votes`
+--
+ALTER TABLE `votes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_vote_classmate_tutor` (`classmatetutor_id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -336,7 +396,7 @@ ALTER TABLE `classmates`
 -- AUTO_INCREMENT cho bảng `classmate_tutors`
 --
 ALTER TABLE `classmate_tutors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `departments`
@@ -354,7 +414,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `list_students`
 --
 ALTER TABLE `list_students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `majors`
@@ -369,6 +429,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT cho bảng `notes`
+--
+ALTER TABLE `notes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
@@ -378,7 +444,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `votes`
+--
+ALTER TABLE `votes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -409,6 +481,18 @@ ALTER TABLE `list_students`
 --
 ALTER TABLE `majors`
   ADD CONSTRAINT `FK_major_department` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`);
+
+--
+-- Các ràng buộc cho bảng `notes`
+--
+ALTER TABLE `notes`
+  ADD CONSTRAINT `FK_note_classmatetutor` FOREIGN KEY (`classmatetutor_id`) REFERENCES `classmate_tutors` (`id`);
+
+--
+-- Các ràng buộc cho bảng `votes`
+--
+ALTER TABLE `votes`
+  ADD CONSTRAINT `FK_vote_classmate_tutor` FOREIGN KEY (`classmatetutor_id`) REFERENCES `classmate_tutors` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
