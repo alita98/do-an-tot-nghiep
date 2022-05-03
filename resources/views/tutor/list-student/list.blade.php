@@ -9,10 +9,14 @@
     <div class="content-mid">
         <div class="col-md-12 mid-content-top">
             <div class="middle-content">
-                <div class="col-md-6">
+                
+             
                     <h2>Danh sách sinh viên đăng kí tham gia</h2>
-                </div>
+            
+               
                 <div>
+                <a href="{{route('export-tasks',['id'=>$classmateTutor->id])}}" id="export" onclick="exportTasks(event.target);" class="btn btn-primary">Xuất file excel</a>
+
                     <table class="table">
                         @csrf
                         <thead>
@@ -21,9 +25,6 @@
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">
-                                        <button type="submit">
-                                            <a href="{{route('export-tasks',['id'=>$classmateTutor->id])}}" id="export" onclick="exportTasks(event.target);">Xuất file excel</a>
-                                        </button>
                                 </th>
                                 
                             </tr>
