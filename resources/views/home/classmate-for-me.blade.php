@@ -57,35 +57,50 @@
                                 <input type="text" disabled class="form-control" value="{{$countClassmateTutor}}">
                             </div>
                         </div>
-                        <div class="row g-3 align-items-center" style="padding-bottom: 10px;">
-                            <div class="col-2">
-                                <label for="" class="col-form-label">Đánh giá chất lượng lớp học</label>
+                        @if(isset($test[0]))
+                            <div class="row g-3 align-items-center" style="padding-bottom: 10px;">
+                                <div class="col-2">
+                                    <label for="" class="col-form-label">Đánh giá chất lượng lớp học</label>
+                                </div>
+                                <div class="col-10">
+                                    <form action="{{route('vote')}}" method="POST">
+                                        @csrf
+                                        @if($checkIds=='true')
+                                            <div>
+                                                <select name="vote" disabled class="form-select" aria-label="Default select example">
+                                                    <option value="1">Tốt</option>
+                                                    <option value="2">Bình thường</option>
+                                                    <option value="3">Chưa đạt</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <input type="hidden" name="classmatetutor_id" value="{{$item->id_classmatetutor}}">
+                                            </div><br>
+                                            <div>
+                                                <button class="btn btn-info" disabled>Cảm ơn phản hồi của bạn</button>
+                                            </div>
+                                        @else
+                                            <div>
+                                                <select name="vote" class="form-select" aria-label="Default select example">
+                                                    <option value="1">Tốt</option>
+                                                    <option value="2">Bình thường</option>
+                                                    <option value="3">Chưa đạt</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <input type="hidden" name="user_id" value="{{$IdUser}}">
+                                            </div>
+                                            <div>
+                                                <input type="hidden" name="classmatetutor_id" value="{{$item->id_classmatetutor}}">
+                                            </div><br>
+                                            <div>
+                                                <button type="submit" class="btn btn-success" onclick="">Gửi</button>
+                                            </div>
+                                        @endif
+                                    </form>
+                                </div>
                             </div>
-                            <div class="col-10">
-                                <form action="{{route('vote')}}" method="POST">
-                                    @csrf
-                                    <div>
-                                        <select name="vote" class="form-select" aria-label="Default select example">
-                                            <option value="1">Tốt</option>
-                                            <option value="2">Bình thường</option>
-                                            <option value="3">Chưa đạt</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="classmatetutor_id" value="{{$item->id_classmatetutor}}">
-                                    </div><br>
-                                    @if($checkIds=='true')
-                                        <div>
-                                            <button class="btn btn-info" disabled>Cảm ơn phản hồi của bạn</button>
-                                        </div>
-                                    @else
-                                        <div>
-                                            <button type="submit" class="btn btn-success" onclick="">Gửi</button>
-                                        </div>
-                                    @endif
-                                </form>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                     @endforeach
                 </div>

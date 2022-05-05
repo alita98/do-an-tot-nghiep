@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Vote extends Model
 {
     use HasFactory;
-    protected $fillable = ['vote','classmatetutor_id'];
+    protected $fillable = ['vote','classmatetutor_id','user_id'];
 }

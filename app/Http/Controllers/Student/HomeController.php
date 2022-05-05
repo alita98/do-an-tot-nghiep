@@ -73,7 +73,11 @@ class HomeController extends Controller
         $IdUser = Auth::user()->id;
 
         $checkIds = collect(DB::table('votes')->where('classmatetutor_id','=',$id)->get())->contains('user_id',$IdUser);
+        // dd($checkIds);
 
+        $test = collect(DB::table('classmate_tutors')->where('date','<',Carbon::now())->where('id',$id)->get());
+        // dd(isset($test[0]));
+        
         $classmateTutor = ClassmateTutor::find($id);
 
         $countClassmateTutor = DB::table('classmate_tutors')
@@ -98,7 +102,7 @@ class HomeController extends Controller
         ->where('classmate_tutors.id',$id)
         ->where('list_students.user_id',$IdUser)->get();
 
-        return view('home.classmate-for-me',compact('classmateTutor','classmateTutorMe','countClassmateTutor','checkIds'));
+        return view('home.classmate-for-me',compact('classmateTutor','classmateTutorMe','countClassmateTutor','checkIds','IdUser','test'));
     }
 
     public function saveVote(Request $request){
