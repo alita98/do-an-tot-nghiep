@@ -55,7 +55,7 @@
                                     </ul>
                                 </div>
                                 <h4><a href="#courses" style="text-decoration: none;">Tên lớp học: {{$item->name}}</a></h4>
-                                <p>Giảng viên: </p>
+                                <p>Giảng viên:{{ $item->usersBelongTo->name }} </p>
                                 <p>Thông tin thêm: {{$item->information}}</p>
                                 <a class="btn btn-style btn-style-primary" href="{{route('detail.classmatetutor',['id'=>$item->id])}}">Xem chi tiết<i class="fa fa-arrow-right ml-2" aria-hidden="true"></i></a>
                             </div>

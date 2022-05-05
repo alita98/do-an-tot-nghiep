@@ -21,7 +21,6 @@ class ClassmateTutorController extends Controller
         $idUser = Auth::user()->id;
         
         $classmate = Classmate::all();
-        
         //Lịch học Hôm nay
         $classmateTutorToday = ClassmateTutor::join('users','users.id','=','classmate_tutors.user_id')
         ->select('classmate_tutors.id','classmate_tutors.name','classmate_tutors.information','classmate_tutors.link','classmate_tutors.date','classmate_tutors.start_time','classmate_tutors.end_time','classmate_tutors.user_id','classmate_tutors.classmate_id')
@@ -172,7 +171,7 @@ class ClassmateTutorController extends Controller
     
     public function exportCsv($id, Request $request){
         $classmateTutor = ClassmateTutor::find($id);
-        $fileName = 'tasks.csv';
+        $fileName = 'danh-sach-sinh-vien.csv';
         $tasks = DB::table('list_students')
         ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
         ->join('users','list_students.user_id','=','users.id')
