@@ -6,9 +6,7 @@
                 <div class="col-4">
                     <div class="area-box color-2">
                         <i class="fa fa-book" aria-hidden="true"></i>
-                        <h4><a class="title-head" style="text-decoration: none;">{{$countttp}} khóa học đã diễn ra</a></h4>
-                        <h4><a class="title-head" style="text-decoration: none;">{{$countttn}} khóa học đang diễn ra</a></h4>
-                        <h4><a class="title-head" style="text-decoration: none;">{{$countttf}} khóa học sắp diễn ra</a></h4>
+                        <h4><a class="title-head" style="text-decoration: none;">{{$countttp}} khóa học</a></h4>
                         <h4></h4>
                     </div>
                 </div>

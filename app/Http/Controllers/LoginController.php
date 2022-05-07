@@ -98,13 +98,16 @@ class LoginController extends Controller
     //Google callback
     public function handleGoogleCallback(){
         $user = Socialite::driver('google')->stateless()->user();
-        $this->createOrUpdateUser($user,'google');
+       
         $mail = substr($user->email,-11);
         if(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'ADM'){
+            $this->createOrUpdateUser($user,'google');
             return redirect()->route('admin.dashboard');
         }elseif(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'USR'){
+            $this->createOrUpdateUser($user,'google');
             return redirect()->route('welcome');
         }elseif(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'TT'){
+            $this->createOrUpdateUser($user,'google');
             return redirect()->route('tutor.dashboard');
         }else{
             return redirect()->route('login')->with('msg1','Tài khoản Google không hợp lệ');
