@@ -322,9 +322,7 @@ demo = {
         Chartist.Pie('#chartPreferences', dataPreferences, optionsPreferences);
 
         Chartist.Pie('#chartPreferences', {
-            labels: ['<?php echo e($percentStdJoined); ?>%',
-                '<?php echo e($percentStdNotParticipate); ?>%'
-            ],
+            labels: ['<?php echo e($percentStdJoined); ?>%','<?php echo e($percentStdNotParticipate); ?>%'],
             series: [<?php echo e($percentStdJoined); ?>, <?php echo e($percentStdNotParticipate); ?>]
         });
     },

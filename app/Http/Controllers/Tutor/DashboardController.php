@@ -7,10 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function index(){
+
         $authID = Auth::user()->id;
+        // pie
             $listStudent = collect(DB::table('list_students')
             ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
             ->select('list_students.user_id')
@@ -18,7 +21,13 @@ class DashboardController extends Controller
             $countSTD = DB::table('users')->where('role','=','USR')->count();
             $percentStdJoined = round(($listStudent/$countSTD)*100,2);
             $percentStdNotParticipate = 100 - $percentStdJoined;
+
+        // barchart
+            // Lấy danh sách tháng trong năm
+                // lấy năm hiện tại
+                $year = Carbon::now()->year;
+                
+        // trả về
             return view('tutor.index',compact('percentStdJoined','percentStdNotParticipate'));
-            // return view('tutor.index');
     }
 }

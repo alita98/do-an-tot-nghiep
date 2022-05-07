@@ -97,17 +97,32 @@ class LoginController extends Controller
 
     //Google callback
     public function handleGoogleCallback(){
-        $user = Socialite::driver('google')->stateless()->user();
-       
+        $google = Socialite::driver('google')->stateless()->user();
         $mail = substr($user->email,-11);
-        if(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'ADM'){
-            $this->createOrUpdateUser($user,'google');
-            return redirect()->route('admin.dashboard');
-        }elseif(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'USR'){
-            $this->createOrUpdateUser($user,'google');
+        // if(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'ADM'){
+        //     return redirect()->route('admin.dashboard');}
+        // tạm thời tài khoản giảng viên là @fpt.edu.vn, còn sinh viên là @gmail.com
+        // Str::endsWith($user->email, '@fpt.edu.vn')
+        if(Str::endsWith($user->email, '@gmail.com')=='true'){
+            $user= User::updateOrCreate([
+                'user'=>$user->id,
+            ],[
+                'name' => $google->name,
+                'email' => $google->email,
+                'github_token' => $google->token,
+                'github_refresh_token' => $google->refreshToken,
+                'role' => 'USR',
+            ]); Auth::login($user);
             return redirect()->route('welcome');
-        }elseif(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'TT'){
-            $this->createOrUpdateUser($user,'google');
+        }elseif(Str::endsWith($user->email, '@fpt.edu.vn')=='true' && Auth::user()->role === 'TT'){
+            $user= User::updateOrCreate([
+                'user'=>$user->id,
+            ],[
+                'name' => $google->name,
+                'email' => $google->email,
+                'github_token' => $google->provider,
+                'role' => 'TT',
+            ]); Auth::login($user);
             return redirect()->route('tutor.dashboard');
         }else{
             return redirect()->route('login')->with('msg1','Tài khoản Google không hợp lệ');
