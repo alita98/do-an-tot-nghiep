@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
-
+use Illuminate\Support\Str;
 class LoginController extends Controller
 {
     public function loginForm(){
@@ -100,14 +100,16 @@ class LoginController extends Controller
         $user = Socialite::driver('google')->stateless()->user();
         $this->createOrUpdateUser($user,'google');
         $mail = substr($user->email,-11);
-        // if(substr($user->email,-11)=="@fpt.edu.vn" && Auth::user()->role === 'ADM'){
-        //     return redirect()->route('admin.dashboard');}
-        // tạm thời tài khoản giảng viên là @fpt.edu.vn, còn sinh viên là @gmail.com
-        // Str::endsWith($user->email, '@fpt.edu.vn')
         if(Str::endsWith($user->email, '@gmail.com')=='true'){
-            return redirect()->route('welcome');
-        }elseif(Str::endsWith($user->email, '@fpt.edu.vn')=='true' && Auth::user()->role === 'TT'){
-            return redirect()->route('tutor.dashboard');
+            $this->createOrUpdateUser($user,'google');
+            if(Auth::user()->role === 'USR'){
+                return redirect()->route('welcome');
+            }
+        }elseif(Str::endsWith($user->email, '@fpt.edu.vn')=='true'){
+            $this->createOrUpdateUser($user,'google');
+            if(Auth::user()->role === 'TT'){
+                return redirect()->route('tutor.dashboard');
+            }  
         }else{
             return redirect()->route('login')->with('msg1','Tài khoản Google không hợp lệ');
         }
@@ -125,16 +127,28 @@ class LoginController extends Controller
                 'last_login' => $last_login
             ]);
         }else{
-            if(substr($data->email,-11)=="@fpt.edu.vn"){
+            if(Str::endsWith($data->email, '@gmail.com')=='true'){
                 $user = User::create([
                     'name' => $data->name,
                     'email' => $data->email,
                     'provider' => $provider,
                     'provider_id' => $data->id,
                     'avatar' => $data->avatar,
-                    'last_login' => $last_login
+                    'last_login' => $last_login,
+                    'role' => 'USR',
                 ]);
-            } else{
+            }if(Str::endsWith($data->email, '@fpt.edu.vn')=='true'){
+                $user = User::create([
+                    'name' => $data->name,
+                    'email' => $data->email,
+                    'provider' => $provider,
+                    'provider_id' => $data->id,
+                    'avatar' => $data->avatar,
+                    'last_login' => $last_login,
+                    'role' => 'TT',
+                ]);
+            }
+             else{
                 return redirect(route('login'));
             }
         }
