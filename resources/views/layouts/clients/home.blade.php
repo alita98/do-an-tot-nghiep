@@ -71,7 +71,7 @@
         <section class="w3l-team py-sm-5 pb-sm-0 pb-5">
             <div class="container py-md-5 py-4">
                 <div class="title-heading-w3 text-center mx-auto mb-5 pb-sm-4">
-                    <h3 class="title-main">Giảng viên có trình độ <span>Quốc Tế</span></h3>
+                    <h3 class="title-main">Giảng viên có <span>chuyên môn</span></h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-lg-3 col-sm-6">

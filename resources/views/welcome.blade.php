@@ -42,18 +42,6 @@ Author URL: http://w3layouts.com
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{route('welcome')}}">TRANG CHỦ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#courses">KHÓA HỌC</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Instructors">GIẢNG VIÊN</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">LIÊN HỆ</a>
-                        </li>
                         @if(Route::has('login'))
                         @auth
                         @if(Auth::user()->role==="USR")
