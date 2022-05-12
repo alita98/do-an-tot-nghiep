@@ -43,7 +43,7 @@ Author URL: http://w3layouts.com
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{route('welcome')}}">TRANG CHỦ <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{route('welcome')}}">TRANG CHỦ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#courses">KHÓA HỌC</a>
@@ -56,8 +56,7 @@ Author URL: http://w3layouts.com
                         </li>
                         @if(Route::has('login'))
                         @auth
-                        @if(Auth::user()->role==="ADM")
-
+                        @if(Auth::user()->role==="USR")
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -65,35 +64,8 @@ Author URL: http://w3layouts.com
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Bảng điều khiển</a></li>
-                                <li><a class="dropdown-item" href="{{route('logout')}}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                        xuất</a></li>
-                            </ul>
-                        </div>
-                        @elseif(Auth::user()->role==="TT")
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    {{Auth::user()->name}}
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
-                                    <li><a class="dropdown-item" href="{{route('tutor.dashboard')}}">Bảng điều khiển</a></li>
-                                    <li><a class="dropdown-item" href="{{route('logout')}}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                            xuất</a></li>
-                                </ul>
-                            </div>
-                        @elseif(Auth::user()->role==="USR")
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                {{Auth::user()->name}}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="{{route('classmate.me')}}">Lớp học đã tham gia</a></li>
+                                <li><a class="dropdown-item" href="{{route('classmate.me')}}">Lớp học đã tham gia</a>
+                                </li>
                                 <li><a class="dropdown-item" href="{{route('logout')}}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
                                         xuất</a></li>
@@ -104,10 +76,10 @@ Author URL: http://w3layouts.com
                             @csrf
                         </form>
                         @else
-                        <li style="padding-left: 10px" class="login-form"><a href="{{route('register')}}"
-                                title="Register" style="text-decoration: none; color: black;">Đăng ký</a></li>
-                        <li style="padding: 10px" title="Login"class="login-form"><a href="{{route('login')}}" title="Login" style="text-decoration: none;color: black;">Đăng
-                                nhập</a></li>
+                        <li title="Login" class="nav-item">
+                            <a href="{{route('login')}}" class="nav-link">Đăng
+                                nhập</a>
+                        </li>
                         @endif
                         @endif
                         <!-- //search button -->
@@ -139,7 +111,7 @@ Author URL: http://w3layouts.com
                             </div>
                         </li>
                     </div>
-                    
+
                     <div class="item">
                         <li>
                             <div class="slider-info  banner-view banner-top1">
@@ -175,13 +147,16 @@ Author URL: http://w3layouts.com
                         <div class="col-lg-2 col-sm-6 sub-two-right">
                             <h6>Đường dẫn nhanh</h6>
                             <ul>
-                                <li><a href="index.html" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Trang
+                                <li><a href="index.html" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Trang
                                         chủ</a>
                                 </li>
-                                <li><a href="#Instructors" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Giảng
+                                <li><a href="#Instructors" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Giảng
                                         viên</a>
                                 </li>
-                                <li><a href="#courses" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Courses</a>
+                                <li><a href="#courses" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Courses</a>
                                 </li>
                                 <li><a href="contact.html" style="text-decoration: none;"><span
                                             class="fa fa-angle-double-right mr-2"></span>Contact</a></li>
@@ -190,13 +165,17 @@ Author URL: http://w3layouts.com
                         <div class="col-lg-3 col-sm-6 sub-two-right pl-lg-5 mt-sm-0 mt-4">
                             <h6>Help & Support</h6>
                             <ul>
-                                <li><a href="#live" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Live
+                                <li><a href="#live" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Live
                                         Chart</a></li>
-                                <li><a href="#faq" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Faq</a>
+                                <li><a href="#faq" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Faq</a>
                                 </li>
-                                <li><a href="#support" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Support</a>
+                                <li><a href="#support" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Support</a>
                                 </li>
-                                <li><a href="#terms" style="text-decoration: none;"><span class="fa fa-angle-double-right mr-2"></span>Terms
+                                <li><a href="#terms" style="text-decoration: none;"><span
+                                            class="fa fa-angle-double-right mr-2"></span>Terms
                                         of Services</a></li>
                             </ul>
                         </div>
