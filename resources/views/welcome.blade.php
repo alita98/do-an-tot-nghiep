@@ -138,7 +138,7 @@ Author URL: http://w3layouts.com
                                 <li><a href="index.html" style="text-decoration: none;"><span
                                             class="fa fa-angle-double-right mr-2"></span>Trang
                                         chủ</a>
-                                </li>
+                                 </li>
                                 <li><a href="#Instructors" style="text-decoration: none;"><span
                                             class="fa fa-angle-double-right mr-2"></span>Giảng
                                         viên</a>
