@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function index(){
         // Đếm số giảng viên
-        $countgv = User::all()->where("role","=","ADM")->count();
+        $countgv = User::all()->where("role","=","TT")->count();
         $countsv = User::all()->where("role","=","USR")->count();
         // Số tt đã diễn ra
         $countttp = ClassmateTutor::all()->count();

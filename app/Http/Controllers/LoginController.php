@@ -47,48 +47,48 @@ class LoginController extends Controller
         return redirect(route('welcome'));
     }
 
-    public function registerForm(){
-        return view('auth.register');
-    }
+    // public function registerForm(){
+    //     return view('auth.register');
+    // }
 
-    public function saveRegister(Request $request){
-        $request->validate(
-            [
-            'email' => 'required|unique:users|regex:/([a-z0-9]+@fpt.edu.vn)/',
-            'password' => 'required|min:6|max:20',
-            'password_confirmation' => 'required|same:password',
-            'name'=>'required|min:3|max:20',
-            ],
-            [
-                'email.required' => 'Hãy nhập email',
-                'email.unique' => 'Đã tồn tại người dùng này',
-                'email.regex' => 'Email không hợp lệ',
-                'password.required' => 'Hãy nhập mật khẩu',
-                'password.min' => 'Hãy nhập ít nhất 6 kí tự',
-                'password_confirmation.same' => 'Xác nhận mật khẩu không khớp với mật khẩu',
-                'password_confirmation.required'=> 'Hãy nhập xác nhận mật khẩu',
-                'name.required' => 'Hãy nhập tên của bạn',
-                'name.min' => 'Mật khẩu có ít nhất 3 ký tự và nhiều nhất 20 ký tự',
-                'name.max' => 'Mật khẩu có ít nhất 3 ký tự và nhiều nhất 20 ký tự'
-            ]
-        );
+    // public function saveRegister(Request $request){
+    //     $request->validate(
+    //         [
+    //         'email' => 'required|unique:users|regex:/([a-z0-9]+@fpt.edu.vn)/',
+    //         'password' => 'required|min:6|max:20',
+    //         'password_confirmation' => 'required|same:password',
+    //         'name'=>'required|min:3|max:20',
+    //         ],
+    //         [
+    //             'email.required' => 'Hãy nhập email',
+    //             'email.unique' => 'Đã tồn tại người dùng này',
+    //             'email.regex' => 'Email không hợp lệ',
+    //             'password.required' => 'Hãy nhập mật khẩu',
+    //             'password.min' => 'Hãy nhập ít nhất 6 kí tự',
+    //             'password_confirmation.same' => 'Xác nhận mật khẩu không khớp với mật khẩu',
+    //             'password_confirmation.required'=> 'Hãy nhập xác nhận mật khẩu',
+    //             'name.required' => 'Hãy nhập tên của bạn',
+    //             'name.min' => 'Mật khẩu có ít nhất 3 ký tự và nhiều nhất 20 ký tự',
+    //             'name.max' => 'Mật khẩu có ít nhất 3 ký tự và nhiều nhất 20 ký tự'
+    //         ]
+    //     );
 
-        $users = User::all();
-        foreach ($users as $users) {
-            if ($users->email == $request->email) {
-                return redirect()->back()->with('msg', 'Username này đã được sử dụng');
-            } else {
-                $model = new User();
-                $model->fill([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                ]);
-                $model->save();
-                return redirect(route('login'))->with('alert','Tạo tài khoản mới thành công!');
-            }
-        }
-    }
+    //     $users = User::all();
+    //     foreach ($users as $users) {
+    //         if ($users->email == $request->email) {
+    //             return redirect()->back()->with('msg', 'Username này đã được sử dụng');
+    //         } else {
+    //             $model = new User();
+    //             $model->fill([
+    //                 'name' => $request->name,
+    //                 'email' => $request->email,
+    //                 'password' => Hash::make($request->password),
+    //             ]);
+    //             $model->save();
+    //             return redirect(route('login'))->with('alert','Tạo tài khoản mới thành công!');
+    //         }
+    //     }
+    // }
     
     //Google Login
     public function redirectToGoogle(){

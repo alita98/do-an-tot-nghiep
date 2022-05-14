@@ -135,8 +135,8 @@
                     </div>
                     <div class="card ">
                         <div class="header">
-                            <h4 class="title">thống kê tutor theo từng tháng</h4>
-                            <p class="category">All products including Taxes</p>
+                            <h4 class="title">Thống kê đánh giá tutor trong tháng {{$monthnow}}/{{$year}} </h4>
+                            <p class="category">Đánh giá bởi sinh viên tham dự khóa học</p>
                         </div>
                         <div class="content">
                             <div id="chartActivity" class="ct-chart"></div>
@@ -148,9 +148,6 @@
                                     <i class="fa fa-circle text-danger"></i> Tệ
                                 </div>
                                 <hr>
-                                <div class="stats">
-                                    <i class="fa fa-check"></i> Data information certified
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -273,11 +270,11 @@ demo = {
 
 
         var data = {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: <?= $names ?>,,
             series: [
-                [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-                [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695],
-                [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695],
+                [20, 19],
+                [20, 19],
+                [20, 19],
             ]
         };
 

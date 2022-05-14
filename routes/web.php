@@ -122,8 +122,6 @@ Route::prefix('student/')->middleware('auth')->group(function(){
 Route::get('login',[LoginController::class,'loginForm'])->name('login');
 Route::post('login',[LoginController::class,'saveLogin']);
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-Route::get('/register',[LoginController::class,'registerForm'])->name('register');
-Route::post('/register',[LoginController::class,'saveRegister'])->name('register.save');
 
 //Đăng nhập bằng Google, Facebook
 

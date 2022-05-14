@@ -25,9 +25,14 @@ class DashboardController extends Controller
         // barchart
             // Lấy danh sách tháng trong năm
                 // lấy năm hiện tại
+                $monthnow = Carbon::now()->month;
                 $year = Carbon::now()->year;
+                // danh sách tên trong tháng
+                $names = collect(DB::table('classmate_tutors')->select('name')->whereYear('date',$year)->whereMonth('date',$monthnow)->get())->pluck('name')->all();
+            
+                // dd($names);
                 
         // trả về
-            return view('tutor.index',compact('percentStdJoined','percentStdNotParticipate'));
+            return view('tutor.index',compact('percentStdJoined','percentStdNotParticipate','monthnow','year','names'));
     }
 }
