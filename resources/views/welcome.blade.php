@@ -53,6 +53,7 @@ Author URL: http://w3layouts.com
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="{{route('classmate.me')}}">Lớp học đã tham gia</a>
+                                <li><a class="dropdown-item" href="{{route('forum')}}">Forum</a>
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('logout')}}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
