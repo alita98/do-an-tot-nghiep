@@ -112,6 +112,9 @@ Route::prefix('student/')->middleware('auth')->group(function(){
 
     //Join Classmate Tutor
     Route::post('detail-classmate-tutor/{id}',[HomeController::class,'saveJoin']);
+
+    // Route::get('diem-danh/{id}',[HomeController::class,'diemDanhForm'])->name('diem.danh.form');
+    Route::post('diem-danh',[HomeController::class,'diemDanh'])->name('diem.danh');
 });
 
 
