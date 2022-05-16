@@ -11,7 +11,7 @@
 
 @if (session()->has('message'))
     <div class="w-4/5 m-auto mt-10 pl-2">
-        <p class="w-2/6 mb-4 text-gray-50 bg-green-500 rounded-2xl py-4">
+        <p class="w-2/6 mb-4 text-gray-50 bg-green-500 rounded-2xl py-4" style="text-align: center;">
             {{ session()->get('message') }}
         </p>
     </div>
@@ -21,8 +21,8 @@
     <div class="pt-15 w-4/5 m-auto ">
         <a 
             href="/student/blog/create"
-            class="bg-blue-500 btn-primary uppercase bg-transparent text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl" style="color: red;">
-            Create post
+            class="bg-blue-500 btn-primary uppercase bg-transparent text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl btn btn-danger" style="color: green;text-decoration: none;">
+            Tạo bài mới
         </a>
     </div>
 @endif
@@ -54,8 +54,8 @@
                 {{ $post->description }}
             </p>
 
-            <a href="/student/blog/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl">
-                Keep Reading
+            <a href="/student/blog/{{ $post->slug }}" class="uppercase bg-blue-500 text-gray-100 text-lg font-extrabold py-4 px-8 rounded-3xl" style="text-decoration: none;">
+                Đọc thêm
             </a>
 
             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
@@ -63,7 +63,7 @@
                     <a 
                         href="/student/blog/{{ $post->slug }}/edit"
                         class="text-gray-700 italic hover:text-gray-900 pb-1 border-b-2">
-                        Edit
+                        Sửa
                     </a>
                 </span>
 
@@ -77,7 +77,7 @@
                         <button
                             class="text-red-500 pr-3"
                             type="submit">
-                            Delete
+                            Xóa
                         </button>
 
                     </form>

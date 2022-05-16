@@ -54,7 +54,9 @@ class PostsController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg|max:5048'
         ]);
  
+        
         $newImageName = uniqid() . '-' . $request->title . '.' . $request->image->extension();
+
 
         $request->image->move(public_path('images'), $newImageName);
 
@@ -82,7 +84,7 @@ class PostsController extends Controller
         ]);
 
         return redirect('/student/blog')
-            ->with('message', 'Your post has been added!');
+            ->with('message', 'Bạn đã thêm bài viết thành công!');
     }
 
     /**
@@ -134,7 +136,7 @@ class PostsController extends Controller
             ]);
 
         return redirect('/student/blog')
-            ->with('message', 'Your post has been updated!');
+            ->with('message', 'Bạn đã cập nhật thành công!');
     }
 
     /**
@@ -149,6 +151,6 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect('/student/blog')
-            ->with('message', 'Your post has been deleted!');
+            ->with('message', 'Bạn đã xóa thành công!');
     }
 }

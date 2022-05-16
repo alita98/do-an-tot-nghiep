@@ -27,13 +27,13 @@
         <header class="bg-gray-800 py-6">
             <div class="container mx-auto flex justify-between items-center px-6">
                 <div>
-                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Laravel') }}
+                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline" style="text-decoration: none;">
+                        FPOLY TUTOR
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                    <a class="no-underline hover:underline" href="{{route('forum')}}">Home</a>
-                    <a class="no-underline hover:underline" href="/student/blog">Blog</a>
+                    <a class="no-underline hover:underline" href="{{route('forum')}}" style="text-decoration: none;">Home</a>
+                    <a class="no-underline hover:underline" href="/student/blog" style="text-decoration: none;">Blog</a>
                     @guest
                         <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
@@ -43,7 +43,7 @@
                         <span>{{ Auth::user()->name }}</span>
 
                         <a class="" href="{{route('logout')}}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-decoration: none;">Đăng
                                         xuất</a>
                                         <form action="{{route('logout')}}" id="logout-form" method="GET">
                             @csrf
