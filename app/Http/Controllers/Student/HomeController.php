@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         // Đếm số giảng viên
         $countgv = User::all()->where("role","=","TT")->count();
         $countsv = User::all()->where("role","=","USR")->count();
@@ -24,12 +24,16 @@ class HomeController extends Controller
         $countttf = ClassmateTutor::all()->count();
         // số tt đang diễn ra
         $countttn = ClassmateTutor::all()->count();
-
-        $classmateTutor = ClassmateTutor::all()
-        ->where('date','>', Carbon::yesterday());
+        $pagesize = config('common.default_page_size'); 
+        $search = ClassmateTutor::where('name', 'like', "%".$request->keyword."%")->where('date','>', Carbon::yesterday());
+        $searchClassmateTutor = $search->paginate($pagesize);
+        $searchClassmateTutor->appends($request->except('page'));
+        // dd($search);
+        $classmateTutor = ClassmateTutor::all()->where('date','>', Carbon::yesterday());
+        $tutors = User::all()->where("role","=","TT")->all();
         $classmateTutor->load('usersBelongTo','classmateBelongTo');
         
-        return view('layouts.clients.home',compact('countgv','countttp','countttf','countttn','countsv','classmateTutor'));
+        return view('layouts.clients.home',compact('countgv','countttp','countttf','countttn','searchClassmateTutor','countsv','tutors','classmateTutor'));
     }
 
     public function detail($id){

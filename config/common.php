@@ -12,14 +12,19 @@ return [
         8 => '60 ngày trước'
     ],
 
-    'page_size' =>[
-        2,
-        4,
-        6,
-        8
+    'attendance' => [
+        1 => 'Đã tham gia',
+        2 => 'Đã điểm danh'
     ],
 
-    'default_page_size' => 2
+    'page_size' =>[
+        3,
+        6,
+        9,
+        12
+    ],
+
+    'default_page_size' => 3
 ]
 
 

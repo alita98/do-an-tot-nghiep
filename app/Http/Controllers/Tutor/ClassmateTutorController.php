@@ -160,10 +160,11 @@ class ClassmateTutorController extends Controller
 
     public function detail($id){
         $classmateTutor = ClassmateTutor::find($id);
+        // $action_id = DB::table('list_students.action_id')->config('common.attendance'); 
         $listStudent = DB::table('list_students')
         ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
         ->join('users','list_students.user_id','=','users.id')
-        ->select('users.name AS name_student','users.email')->where('list_students.classmatetutor_id','=',$id)->get();
+        ->select('users.name AS name_student','users.email','action_id')->where('list_students.classmatetutor_id','=',$id)->get();
         // dd($listStudent);
         $classmateTutor->load('listStudent');
         return view('tutor.list-student.list',compact('classmateTutor','listStudent'));
@@ -175,7 +176,7 @@ class ClassmateTutorController extends Controller
         $tasks = DB::table('list_students')
         ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
         ->join('users','list_students.user_id','=','users.id')
-        ->select('users.name AS name_student','users.email','users.id AS id_student')
+        ->select('users.name AS name_student','users.email','users.id AS id_student','action_id')
         ->where('list_students.classmatetutor_id','=',$id)->get();
         // dd($tasks);
      
@@ -188,18 +189,18 @@ class ClassmateTutorController extends Controller
             "Fonts" => "Times New Roman"
         );
 
-        $columns = array('id_student','name_student', 'email');
+        $columns = array('ID sinh vien','Ten sinh vien', 'Email', 'Trang thai diem danh');
 
         $callback = function() use($tasks, $columns) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($tasks as $task) {
-                $row['id']    = $task->id_student;
-                $row['name_student']    = $task->name_student;
-                $row['email']    = $task->email;
-
-                fputcsv($file, array($row['id'], $row['name_student'], $row['email']));
+                $row['ID sinh vien']    = $task->id_student;
+                $row['Ten sinh vien']    = $task->name_student;
+                $row['Email']    = $task->email;
+                $row['Trang thai diem danh']    = $task->action_id == 1 ? "Da tham gia" : "Da diem danh";
+                fputcsv($file, array($row['ID sinh vien'], $row['Ten sinh vien'], $row['Email'], $row['Trang thai diem danh']));
             }
 
             fclose($file);
