@@ -35,7 +35,7 @@
                     <h3 class="title-main">Khóa học <span>Sắp diễn ra</span></h3>
                 </div>
                 <div class="row">
-                    @foreach($classmateTutor as $item)
+                    @foreach($searchClassmateTutor as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-card-single">
                             <div class="grids5-info position-relative">
@@ -60,6 +60,7 @@
                         </div>
                     </div>
                     @endforeach
+                    {{-- {{$searchClassmateTutor->links()}} --}}
                 </div>
             </div>
         </div>
@@ -74,11 +75,12 @@
                     <h3 class="title-main">Giảng viên có <span>chuyên môn</span></h3>
                 </div>
                 <div class="row text-center">
+                    @foreach ($tutors as $item)
                     <div class="col-lg-3 col-sm-6">
                         <div class="team-block-single">
                             <div class="team-grids">
                                 <a href="#team-single">
-                                    <img src="{{asset('base/images/team1.jpg')}}" class="img-fluid" alt="">
+                                    <img src="{{$item->avatar}}" class="img-fluid" alt="">
                                     <div class="team-info">
                                         <div class="social-icons-section">
                                             <a class="fac" href="#facebook">
@@ -95,89 +97,12 @@
                                 </a>
                             </div>
                             <div class="team-bottom-block p-4">
-                                <h5 class="member mb-1"><a href="#team" style="text-decoration: none;">Trần Hữu Thiện</a></h5>
-                                <small>Giảng viên Back-end</small>
+                                <h5 class="member mb-1">{{$item->name}}</h5>
+                                <small>Email: {{$item->email}}</small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5">
-                        <div class="team-block-single">
-                            <div class="team-grids">
-                                <a href="#team-single">
-                                    <img src="{{asset('base/images/team2.jpg')}}" class="img-fluid" alt="">
-                                    <div class="team-info">
-                                        <div class="social-icons-section">
-                                            <a class="fac" href="#facebook">
-                                                <span class="fa fa-facebook"></span>
-                                            </a>
-                                            <a class="twitter mx-2" href="#twitter">
-                                                <span class="fa fa-twitter"></span>
-                                            </a>
-                                            <a class="google" href="#google-plus">
-                                                <span class="fa fa-google-plus"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="team-bottom-block p-4">
-                                <h5 class="member mb-1 active"><a href="#team" style="text-decoration: none;">Nguyễn Tuyết Mai</a></h5>
-                                <small>Giảng viên Back-end</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                        <div class="team-block-single">
-                            <div class="team-grids">
-                                <a href="#team-single">
-                                    <img src="{{asset('base/images/team3.jpg')}}" class="img-fluid" alt="">
-                                    <div class="team-info">
-                                        <div class="social-icons-section">
-                                            <a class="fac" href="#facebook">
-                                                <span class="fa fa-facebook"></span>
-                                            </a>
-                                            <a class="twitter mx-2" href="#twitter">
-                                                <span class="fa fa-twitter"></span>
-                                            </a>
-                                            <a class="google" href="#google-plus">
-                                                <span class="fa fa-google-plus"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="team-bottom-block p-4">
-                                <h5 class="member mb-1"><a href="#team" style="text-decoration: none;">Trần Thái Sơn </a></h5>
-                                <small>Giảng viên Back-end</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                        <div class="team-block-single">
-                            <div class="team-grids">
-                                <a href="#team-single">
-                                    <img src="{{asset('base/images/team4.jpg')}}" class="img-fluid" alt="">
-                                    <div class="team-info">
-                                        <div class="social-icons-section">
-                                            <a class="fac" href="#facebook">
-                                                <span class="fa fa-facebook"></span>
-                                            </a>
-                                            <a class="twitter mx-2" href="#twitter">
-                                                <span class="fa fa-twitter"></span>
-                                            </a>
-                                            <a class="google" href="#google-plus">
-                                                <span class="fa fa-google-plus"></span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="team-bottom-block p-4">
-                                <h5 class="member mb-1"><a href="#team" style="text-decoration: none;">Nguyễn Văn Đạt</a></h5>
-                                <small>Giảng viên Front-end</small>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

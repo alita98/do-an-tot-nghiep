@@ -67,14 +67,13 @@
                                         @csrf
                                         @if($checkIds=='true')
                                             <div>
-                                                <select name="vote" disabled class="form-select" aria-label="Default select example">
-                                                    <option value="1">Tốt</option>
-                                                    <option value="2">Bình thường</option>
-                                                    <option value="3">Chưa đạt</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <input type="hidden" name="classmatetutor_id" value="{{$item->id_classmatetutor}}">
+                                                @if($item->vote == 1)
+                                                <input type="text" disabled class="form-control" value="Tốt">
+                                                @elseif($item->vote == 2)
+                                                <input type="text" disabled class="form-control" value="Trung bình">
+                                                @elseif($item->vote == 3)
+                                                <input type="text" disabled class="form-control" value="Chưa được">
+                                                @endif
                                             </div><br>
                                             <div>
                                                 <button class="btn btn-info" disabled>Cảm ơn phản hồi của bạn</button>
@@ -102,8 +101,25 @@
                             </div>
                         @endif
                     </div>
+                    @if($val1 < $test6 && $test6<$val4 && $val6 == $test7)
+                        @if($checkList == 'true')
+                        <div class="row g-3 align-items-center" style="padding-bottom: 10px;">
+                            <form action="{{route('diem.danh')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="list_id" value="{{$item->id_list}}">
+                                <button type="submit" class="btn btn-success">Điểm danh</button>
+                            </form>
+                        </div>
+                        @else
+                        <div>
+                            <button class="btn btn-info" disabled>Đã điểm danh</button>
+                        </div>
+                        @endif
+                    @endif
+
                     @endforeach
                 </div>
+                
             </div>
         </div>
     </div>

@@ -24,7 +24,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Họ và tên</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">
+                                <th scope="col">Trạng thái điểm danh
                                 </th>
                                 
                             </tr>
@@ -38,6 +38,17 @@
                                     <td scope="row">{{$stt++}}</td>
                                     <td scope="row">{{$item->name_student}}</td>
                                     <td scope="row">{{$item->email}}</td>
+                                    <td scope="row">
+                                        @if($item->action_id == 1)
+                                            Da tham gia
+                                        
+                                       
+                                        @elseif($item->action_id == 2)
+                                            Da diem danh
+                                        
+                                        @endif
+                                            
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -26,19 +26,17 @@ Author URL: http://w3layouts.com
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
-                    <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <a class="navbar-brand d-flex align-items-center" href="{{route('welcome')}}">
                         <img src="{{asset('base/images/logo.png')}}" alt="" class="mr-1" />FPOLY TUTOR</a>
                 </h1>
                 <!-- if logo is image enable this   
     <a class="navbar-brand" href="#index.html">
         <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
     </a> -->
-                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
-                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
+                    <form action="" method="get">
+                        <input type="text" name="keyword" >
+                        <button type="submit">Tìm kiếm</button>
+                    </form>
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-lg-auto">
@@ -53,6 +51,7 @@ Author URL: http://w3layouts.com
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="{{route('classmate.me')}}">Lớp học đã tham gia</a>
+                                <li><a class="dropdown-item" href="{{route('forum')}}">Forum</a>
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('logout')}}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
@@ -63,6 +62,42 @@ Author URL: http://w3layouts.com
                         <form action="{{route('logout')}}" id="logout-form" method="GET">
                             @csrf
                         </form>
+                        @if(Auth::user()->role==="TT")
+                        <nav class="navbar navbar-default navbar-fixed">
+                            <div class="container-fluid">
+                                <div class="col-md-2"></div>
+                                <div class="navbar-header">
+                
+                                </div>
+                                <div class="collapse navbar-collapse">
+                
+                                    <ul class="nav navbar-nav navbar-right">
+                
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                                <p>
+                                                    {{Auth::user()->name}}
+                                                    <b class="caret"></b>
+                                                </p>
+                
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="{{route('UserProfile')}}">Thông tin cá
+                                                        nhân</a></li>
+                                                <li><a class="dropdown-item" href="{{route('logout')}}"
+                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                                        xuất</a></li>
+                                                <form action="{{route('logout')}}" id="logout-form" method="GET">
+                                                    @csrf
+                                                </form>
+                                            </ul>
+                                        </li>
+                                        <li class="separator hidden-lg"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        @endif
                         @else
                         <li title="Login" class="nav-item">
                             <a href="{{route('login')}}" class="nav-link">Đăng

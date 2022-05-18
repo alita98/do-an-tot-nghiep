@@ -75,7 +75,7 @@
         <div class="sidebar" data-color="purple" data-image="{{asset('assets/img/sidebar-5.jpg')}}">
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="" class="simple-text">
                         Fpoly Tutor
                     </a>
                 </div>

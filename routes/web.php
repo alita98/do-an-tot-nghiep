@@ -12,6 +12,8 @@ use App\Http\Controllers\Tutor\DashboardController as TutorDashboardController;
 use App\Http\Controllers\Tutor\DepartmentController;
 use App\Http\Controllers\Tutor\MajorController;
 use App\Http\Controllers\Tutor\ListStudentController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +114,20 @@ Route::prefix('student/')->middleware('auth')->group(function(){
 
     //Join Classmate Tutor
     Route::post('detail-classmate-tutor/{id}',[HomeController::class,'saveJoin']);
+
+    // Route::get('diem-danh/{id}',[HomeController::class,'diemDanhForm'])->name('diem.danh.form');
+    Route::post('diem-danh',[HomeController::class,'diemDanh'])->name('diem.danh');
+
+
+
+    Route::get('/forum', [PagesController::class, 'index'])->name('forum');
+
+    Route::resource('/blog', PostsController::class);
+    Route::POST('/comment/store',  [\App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
+    Route::post('/reply/store', [\App\Http\Controllers\CommentController::class,'replyStore'])->name('reply.add');
+    Route::get('/search', [\App\Http\Controllers\PagesController::class,'search'])->name('PostSearch');
+    Route::get('/category', [\App\Http\Controllers\CategoryController::class,'index'])->name('category');
+    Route::get('/tag', [\App\Http\Controllers\TagController::class,'index'])->name('tag');
 });
 
 

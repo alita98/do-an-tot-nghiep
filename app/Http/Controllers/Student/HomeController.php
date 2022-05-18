@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         // Đếm số giảng viên
         $countgv = User::all()->where("role","=","TT")->count();
         $countsv = User::all()->where("role","=","USR")->count();
@@ -24,12 +24,16 @@ class HomeController extends Controller
         $countttf = ClassmateTutor::all()->count();
         // số tt đang diễn ra
         $countttn = ClassmateTutor::all()->count();
-
-        $classmateTutor = ClassmateTutor::all()
-        ->where('date','>', Carbon::yesterday());
+        $pagesize = config('common.default_page_size'); 
+        $search = ClassmateTutor::where('name', 'like', "%".$request->keyword."%")->where('date','>', Carbon::yesterday());
+        $searchClassmateTutor = $search->paginate($pagesize);
+        $searchClassmateTutor->appends($request->except('page'));
+        // dd($search);
+        $classmateTutor = ClassmateTutor::all()->where('date','>', Carbon::yesterday());
+        $tutors = User::all()->where("role","=","TT")->all();
         $classmateTutor->load('usersBelongTo','classmateBelongTo');
         
-        return view('layouts.clients.home',compact('countgv','countttp','countttf','countttn','countsv','classmateTutor'));
+        return view('layouts.clients.home',compact('countgv','countttp','countttf','countttn','searchClassmateTutor','countsv','tutors','classmateTutor'));
     }
 
     public function detail($id){
@@ -74,10 +78,68 @@ class HomeController extends Controller
 
         $checkIds = collect(DB::table('votes')->where('classmatetutor_id','=',$id)->get())->contains('user_id',$IdUser);
         // dd($checkIds);
+        $checkList = collect(DB::table('list_students')
+        ->join('classmate_tutors','classmate_tutors.id','=','list_students.classmatetutor_id')
+        ->select(
+            'list_students.id',
+            'list_students.user_id',
+            'list_students.classmatetutor_id',
+            'list_students.action_id',
+        )
+        ->where('classmate_tutors.id',$id)
+        ->where('list_students.action_id','=',1)->get())->contains('user_id',$IdUser);
+
+        
 
         $test = collect(DB::table('classmate_tutors')->where('date','<',Carbon::now())->where('id',$id)->get());
-        // dd(isset($test[0]));
+
         
+        $test1 = DB::table('classmate_tutors')->select('start_time')->where('id',$id)->get();
+        $test2 = DB::table('classmate_tutors')->select('end_time')->where('id',$id)->get();
+        $test3 = DB::table('classmate_tutors')->select('date')->where('id',$id)->get();
+        
+        // $test4 = DB::table('classmate_tutors')
+        // ->where('date','=',Carbon::now()->today())
+        // ->where('id',$id)->get();
+        // $d = Carbon::now()->format('H:i');
+        // $nextyear  = mktime(0, 0, 0, date("m"),   date("d"),   date("Y")+1);
+        // $dt = date_add();
+        // dd($nextyear);
+        
+        //Start_time
+        foreach($test1 as $key => $val){
+            foreach($val as $key1 => $val1){
+                // dd($val1);
+            }
+        }
+
+        // End_time
+        foreach($test2 as $key3 => $val3){
+            foreach($val3 as $key4 => $val4){
+                // dd($val4);
+            }
+        }
+
+        //Date today
+        foreach($test3 as $key5 => $val5){
+            foreach($val5 as $key6 => $val6){
+                // dd($val6);
+            }
+        }
+        // $test5 = Carbon::now()->diffInHours($val1);
+        // dd($test5);
+        $test6 = date('H:i');
+        $test7 = date('Y-m-d');
+        // dd($test7);
+        // dd($test6);
+        // if($val1 < $test6 && $test6<$val4 && $val6 == $test7){
+            // dd('true');
+        // }else{
+            // dd('false');
+        // }
+
+        // $t = Carbon::now()->hour;
+        // dd($t);
         $classmateTutor = ClassmateTutor::find($id);
 
         $countClassmateTutor = DB::table('classmate_tutors')
@@ -98,11 +160,31 @@ class HomeController extends Controller
             'classmate_tutors.start_time as start_time_classmatetutor',
             'classmate_tutors.end_time as end_time_classmatetutor',
             'classmate_tutors.information as information_classmatetutor',
+            'list_students.action_id as action_list',
+            'list_students.id as id_list'
             )
         ->where('classmate_tutors.id',$id)
         ->where('list_students.user_id',$IdUser)->get();
 
-        return view('home.classmate-for-me',compact('classmateTutor','classmateTutorMe','countClassmateTutor','checkIds','IdUser','test'));
+        return view('home.classmate-for-me',compact('classmateTutor','classmateTutorMe','countClassmateTutor','checkIds','IdUser','test','val1','test6','val4','test7','val6','checkList'));
+    }
+
+
+    public function diemDanh(Request $request){
+        if($request->isMethod('post')){
+            $list_id = $request->get('list_id');
+            $list = ListStudent::find($list_id);
+            $list->fill(
+                [
+                    'user_id' => $list->user_id,
+                    'classmatetutor_id' => $list->classmatetutor_id,
+                    'action_id' => 2
+
+                ]
+            );
+            $list->save();
+            return redirect()->back();
+        }
     }
 
     public function saveVote(Request $request){
