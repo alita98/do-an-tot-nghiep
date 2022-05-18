@@ -29,10 +29,11 @@ class DashboardController extends Controller
                 $year = Carbon::now()->year;
                 // danh sách tên trong tháng
                 $names = collect(DB::table('classmate_tutors')->select('name')->whereYear('date',$year)->whereMonth('date',$monthnow)->get())->pluck('name')->all();
+                // $names = DB::table('classmate_tutors')->select('name')->whereYear('date',$year)->whereMonth('date',$monthnow)->get();
             
                 // dd($names);
                 
         // trả về
-            return view('tutor.index',compact('percentStdJoined','percentStdNotParticipate','monthnow','year','names'));
+            return view('tutor.index',compact('percentStdJoined','percentStdNotParticipate','monthnow','year'),['names'=>json_encode($names)]);
     }
 }
